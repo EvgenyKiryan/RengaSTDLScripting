@@ -6,6 +6,10 @@
 Добро пожаловать в руководство по встроенным функциям LUA!
 ==========================================================
 
+.. image:: https://readthedocs.org/projects/rengaluaguide/badge/?version=stable
+   :target: https://rengaluaguide.readthedocs.io/ru/stable/?badge=stable
+   :alt: Documentation Status
+
 Содержание
 ----------
 
