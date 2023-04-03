@@ -169,7 +169,7 @@
     :caption: Пример 9. Создание видимости параметра ``body_width`` группы параметров ``dimensions`` во вкладке "Параметры" окна стиля объекта:
     :linenos:
 
-    renga.ui:set_param_visible(renga.parameters.dimensions.body_width, true)
+    renga.ui:set_param_visible("dimensions.body_width", true)
 
 Задание видимости группы параметров в окне стиля объекта
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
