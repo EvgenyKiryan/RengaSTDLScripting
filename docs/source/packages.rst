@@ -5,7 +5,7 @@
 
 ``renga.geometry`` — таблица объектов, создающих геометрию объекта в Renga для различного отображения:
 
-+ ``renga.reometry.detailed`` — создание твердотельной 3D-геометрию и :ref:`вспомогательной плоской геометрии <aux>` в 3D;    
++ ``renga.reometry.detailed`` — создание твердотельной 3D-геометрии и :ref:`вспомогательной плоской геометрии <aux>` в 3D;    
 + ``renga.reometry.symbolic`` — создание плоской геометрии на различных проекциях с условным уровнем детализации;
 + ``renga.reometry.symbol`` — создание плоской геометрии на различных проекциях с символьным уровнем детализации.
 
@@ -71,7 +71,7 @@
 
 .. _aux:
 
-.. note:: Вспомогательная геометрия — дополнительная плоская геометрия. Нужна для создания не существующей в реальном объекте геометрии (направление потока, условное обозначение). Не специфицируется.
+.. note:: Вспомогательная геометрия — дополнительная плоская геометрия. Обычно используется для создания не существующей в реальном объекте геометрии (направление потока, условное обозначение). Не специфицируется.
 
 Метод:
 
@@ -88,7 +88,8 @@
     local aux_geometry = renga.api.PlanarGeometryGlobalZ()
 
     aux_geometry:add_hatch_basic(region)
-    renga.geometry.detailed:add_solid(solid):add_planar_geometry(aux_geometry:set_placement(placement))
+    renga.geometry.detailed:add_solid(solid)
+    renga.geometry.detailed:add_planar_geometry(aux_geometry:set_placement(placement))
 
 Передача в Renga геометрии для создания условного изображения объекта
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -188,7 +189,7 @@
 .. note:: Имена групп параметров берутся из JSON
 
 .. code-block:: lua
-    :caption: Пример 10. Создание видимости группы параметров ``inlet_1`` во вкладке "Параметры" окна стиля объекта:
+    :caption: Пример 10. Создание видимости группы параметров ``electric_actuator_dimensions`` во вкладке "Параметры" окна стиля объекта:
     :linenos:
 
-    renga.ui:set_group_visible("inlet_1", true)
+    renga.ui:set_group_visible("electric_actuator_dimensions", true)

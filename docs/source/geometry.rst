@@ -1,7 +1,7 @@
 Твердотельная 3D-геометрия (класс Solid)
 ========================================
 
-Общий класс **Solid** не имеет конструктора. Содержит функции, порождающие твердотельную геометрию. Служит для построения 3D-геометрии оборудования.
+Общий класс **Solid** не имеет конструктора. Содержит функции, порождающие твердотельную геометрию. Служит для построения 3D-геометрии объектов.
 
 Порождающие функции
 -------------------
@@ -19,7 +19,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 1:
+    :caption: Пример 1.
     :linenos:
 
     local solid = renga.api.Cube(20)
@@ -50,7 +50,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 2:
+    :caption: Пример 2.
     :linenos:
 
     local solid = renga.api.Box(40, 15, 20)
@@ -75,7 +75,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 3:
+    :caption: Пример 3.
     :linenos:
 
     local solid = renga.api.Sphere(10)
@@ -104,7 +104,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 4:
+    :caption: Пример 4.
     :linenos:
 
     local solid = renga.api.Cylinder(10, 40)
@@ -133,7 +133,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 5:
+    :caption: Пример 5.
     :linenos:
 
     local solid = renga.api.Cone(10, 40)
@@ -164,7 +164,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 6:
+    :caption: Пример 6.
     :linenos:
 
     local solid = renga.api.ConicalFrustum(10, 5, 20)
@@ -195,7 +195,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 7:
+    :caption: Пример 7.
     :linenos:
 
     local solid = renga.api.Pyramid(25, 15, 20)
@@ -222,7 +222,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 8:
+    :caption: Пример 8.
     :linenos:
 
     local points = {
@@ -265,7 +265,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 9:
+    :caption: Пример 9.
     :linenos:
 
     local points = {
@@ -306,7 +306,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 10:
+    :caption: Пример 10.
     :linenos:
 
     local profiles = {
@@ -345,7 +345,7 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 11:
+    :caption: Пример 11.
     :linenos:
 
     local start_profile = renga.api.Rectangle(30, 30)
@@ -390,7 +390,7 @@
     :type ClockwiseAngle: Number
 
 .. code-block:: lua
-    :caption: Пример 12:
+    :caption: Пример 12.
     :linenos:
 
     local placement = renga.api.Placement3d(renga.api.Point3d(0, 0, 0),
@@ -459,7 +459,7 @@
 Пример кода:
 
 .. code-block:: lua
-    :caption: Пример 13:
+    :caption: Пример 13.
     :linenos:
 
     local cube = renga.api.Cube(20)
@@ -482,7 +482,7 @@
 Пример кода:
 
 .. code-block:: lua
-    :caption: Пример 14:
+    :caption: Пример 14.
     :linenos:
 
     local cube = renga.api.Cube(20)
