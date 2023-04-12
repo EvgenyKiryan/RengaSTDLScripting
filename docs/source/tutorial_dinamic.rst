@@ -5,11 +5,11 @@
 
 1. В рабочей среде редактора создадим папку с названием будущего оборудования ``Wall-mounted VRF indoor unit`` и создадим в ней файл ``parameters.json``. Добавим в файл объекты ``metadata``, ``ports`` и массив ``style_parameters``.
 
-    .. figure:: _static/tutorial_step1.png
-        :alt: Создание файла parameters
-        :figwidth: 90%
+.. figure:: _static/tutorial_step1.png
+    :alt: Создание файла parameters
+    :figwidth: 90%
 
-        Создание файла ``parameters.json``
+    Создание файла ``parameters.json``
 
 2. Заполним объект ``metadata`` информацией о шаблоне. Добавим атрибут ``default_name`` — название по-умолчанию в списке стилей объекта (его можно изменить после импорта в Renga). Также добавим (не редактируемые в Renga) атрибуты ``description``, ``version`` и ``author`` — они будут отображаться только в диалоге "Категории".
 
