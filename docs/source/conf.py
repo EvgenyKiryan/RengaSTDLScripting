@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Renga LUA Guide'
+project = 'Renga Lua Scripting'
 copyright = '2023, Renga Software'
 author = 'Eugene Kiryan'
 release = '1.0'

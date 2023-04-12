@@ -1,14 +1,16 @@
-.. Renga LUA Guide documentation master file, created by
+.. Renga Lua Guide documentation master file, created by
    sphinx-quickstart on Mon Mar  6 09:29:04 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Добро пожаловать в руководство по встроенным функциям LUA!
-==========================================================
+Renga Lua Scripting
+===================
 
 .. image:: https://readthedocs.org/projects/rengaluaguide/badge/?version=stable
    :target: https://rengaluaguide.readthedocs.io/ru/stable/?badge=stable
    :alt: Documentation Status
+
+Добро пожаловать в руководство по созданию пользовательских категорий инженерного оборудования в Renga!
 
 Содержание
 ----------
@@ -53,7 +55,13 @@
    :maxdepth: 2
    :caption: Tutorial:
 
-   tutorial
+   tutorial_intro
+
+   tutorial_dinamic
+
+   tutorial_static
+
+   tutorial_outro
 
 Индекс
 ------
