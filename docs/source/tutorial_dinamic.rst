@@ -5,7 +5,7 @@
 
 1. В рабочей среде редактора создадим папку с названием будущего оборудования ``Wall-mounted VRF indoor unit`` и создадим в ней файл ``parameters.json``. Добавим в файл объекты ``metadata``, ``ports`` и массив ``style_parameters``.
 
-.. figure:: _static/tutorial_step1.png
+.. figure:: _static/Tutorial_step1.png
     :alt: Создание файла parameters
     :figwidth: 90%
 
