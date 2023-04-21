@@ -206,7 +206,7 @@
 .. function:: :inverse()
 
     :return: Инвертированная кривая
-    :rtype: :ref:`Point2d <point2d>`
+    :rtype: :ref:`Curve2d <curve2d>`
 
 * Скруглить все сегменты контура
 
@@ -285,7 +285,7 @@
 Функции, не члены класса
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Вернуть точку пересения кривых Curve1 и Curve2d.
+* Вернуть точку пересения кривых Curve1 и Curve2.
 
 .. function:: LineIntersection(first, second)
 

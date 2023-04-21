@@ -1,14 +1,14 @@
 main.lua
 ========
 
-Динамическая часть описания шаблонной категории — создание скрипта на языке Lua, создающий на основе параметров из ``parameters.json`` категорию объекта Renga.
+Перейдём к описанию динамической части описания шаблонной категории. Это создание скрипта на языке Lua, создающий на основе параметров из ``parameters.json`` категорию объекта Renga.
 
 Скриптование в "коротком стиле"
 -------------------------------
 
-.. attention:: Не обязательная часть.
+.. attention:: Это необязательная часть.
 
-В разделе :doc:`Lua-интерфейс Renga </packages>` приведен :ref:`пример #4 <cube_example>` создания твердотельной 3D-геометрии в виде куба. Если вместо переменной ``size`` нам нужно взять значение параметра, который будет описан в группе ``dimensions`` файла ``parameters.json``, то полный код примера будет таким:
+В главе :doc:`Lua-интерфейс Renga </packages>` приведен :ref:`пример #4 <cube_example>` создания твердотельной 3D-геометрии в виде куба. Если вместо переменной ``size`` нам нужно взять значение параметра, который будет описан в группе ``dimensions`` файла ``parameters.json``, то полный код примера будет таким:
 
 .. code-block:: lua
     :caption: Скрипт создания куба в полном варианте
@@ -49,7 +49,7 @@ main.lua
 
 Корпус настенного блока VRF-системы будет создан телом выдавливания :ref:`Extrusion <extrusion>`.
 
-Создадим функцию ``make_profile()``, которая будет создавать пятиугольник по точкам - замкнутый контур :ref:`ClosedContourByPoints <closed_contour>`. Координаты точек будут определяться параметрами ``body_height`` и ``body_weight``:
+1. Создадим функцию ``make_profile()``, которая будет создавать пятиугольник по точкам — замкнутый контур :ref:`ClosedContourByPoints <closed_contour>`. Координаты точек будут определяться параметрами ``body_height`` и ``body_weight``:
 
 .. code-block:: lua
     :caption: Функция ``make_profile()``, создающая профиль корпуса оборудования.
@@ -68,9 +68,13 @@ main.lua
 
 Метод ``fillet`` скругляет вершину контура с индексом [2] по радиусу, равным ``body_width`` / 4.
 
-.. attention:: Добавить картинку
+.. figure:: _static/Category_profile.png
+    :alt: ClosedContourByPoints
+    :figwidth: 90%
 
-Далее создадим тело выдавливания :ref:`Extrusion <extrusion>` на длину ``body_length``, разместим его в своей локальной системе координат ``placement`` с помощью метода ``place`` и создадим детальную геометрию категории ``category.geometry.detailed`` с помощью метода ``add_solid``.
+    Профиль корпуса оборудования
+
+2. Далее создадим тело выдавливания :ref:`Extrusion <extrusion>` на длину ``body_length``, разместим его в своей локальной системе координат ``placement`` с помощью метода ``place`` и создадим детальную геометрию категории ``category.geometry.detailed`` с помощью метода ``add_solid``.
 
 .. code-block:: lua
     :caption: Создание детальной геометрии категории.
@@ -83,18 +87,54 @@ main.lua
 
     local solid = Extrusion(make_profile(), dimensions.body_length)
         :place(placement)
-        :shift(dimensions.body_length / 2, -dimensions.body_width / 2, 0)
+        :shift(dimensions.body_length / 2, dimensions.body_width / 2, 0)
 
     category.geometry.detailed:add_solid(solid)
 
 .. note:: Центр геометрического примитива создается в начале координат своей ЛСК.
     
-    Выдавливание профиля выполняется относительно локальной оси Z, т.е. вертикально. С помощью метода ``place`` мы задаем новую ЛСК, в которой тело ориентируется горизонально (поворачиваем оси).
+Выдавливание профиля выполняется относительно локальной оси Z, т.е. вертикально. С помощью метода ``place`` мы задаем новую ЛСК, в которой тело ориентируется горизонально (поворачиваем оси).
 
-Создание условной геометрии
----------------------------
+Создание условного изображения
+------------------------------
 
-.. attention:: Этот блок дописывается
+3. В начале создадим примитивы из плоских кривых: ``contour`` — для создания прямоугольного контура оборудования и ``letter_s`` — для создания буквы "S".
+
+.. code-block:: lua
+    :caption: Создание плоских кривых ``contour`` и ``letter_s``.
+    :linenos:
+
+    local contour = Rectangle(dimensions.body_length, dimensions.body_width)
+
+    local letter_s = ArcBy3Points(Point2d(19.4, 23), Point2d(4.2, 30.4), Point2d(-12, 26)) +
+                     ArcBy3Points(Point2d(-12, 26), Point2d(-16.4, 14.2), Point2d(-9, 4.2)) +
+                     Line(Point2d(-9, 4.2), Point2d(9, -4.2)) +
+                     ArcBy3Points(Point2d(9, -4.2), Point2d(16.4, -14.2), Point2d(12, -26)) +
+                     ArcBy3Points(Point2d(12, -26), Point2d(-4.2, -30.4), Point2d(-19.4, -23))
+
+Многосегментная кривая ``letter_s`` создается из 5-ти отдельных односегментных кривых, путем булевого сложения.
+
+4. Условное изображение категории будет плоской геометрией :ref:`PlanarGeometryAxis90() <planargeometryaxis90>`. Поместим созданные кривые в плоскую геометрию с помощью метода ``add_curves`` и добавим основную заливку с помощью метода ``add_hatch_basic``.
+
+.. code-block:: lua
+    :caption: Создание плоской геометрии.
+    :linenos:
+
+    local geometry = PlanarGeometryAxis90()
+
+    geometry:add_curve(contour):add_curve(letter_s)
+    geometry:add_hatch_basic(Region({contour}))
+    geometry:set_placement(Placement3d(Point3d(0, 0, 0), Vector3d(0, -1, 0), Vector3d(1, 0, 0)))
+
+    category.geometry.symbolic:add_planar_geometry(geometry)
+
+5. Из созданной плоской геометрии ``geometry`` создаем условное изображение категории ``category.geometry.symbolic`` с помощью метода ``add_planar_geometry``.
+
+.. figure:: _static/Category_planargeometry.png
+    :alt: Детальное и условное отображение
+    :figwidth: 90%
+
+    Детальное и условное отображение
 
 Создание портов
 ---------------
@@ -102,7 +142,9 @@ main.lua
 Создание портов трубопроводных систем
 """""""""""""""""""""""""""""""""""""
 
-Объявим несколько локальных переменных, которые помогут создать декартовы точки  портов.
+6. Объявим несколько локальных переменных, которые помогут создать декартовы точки портов.
+
+.. note:: Порты размещаются по-умолчанию в центре ЛСК
 
 .. code-block:: lua
     :caption: Создание локальных переменных.
@@ -111,11 +153,12 @@ main.lua
     local half_width = dimensions.body_width / 2
     local half_length_with_indent50 = dimensions.body_length / 2 - 50
 
+    -- декартовы точки по-умолчанию
     local water_coolant_origin = Point3d(0, 0, 0)
     local gas_coolant_origin = Point3d(0, 0, 0)
     local drainage_origin = Point3d(0, 0, 0)
 
-Следующая часть кода размещает декартовы точки портов в зависимости от параметра ``connection_side``: слева или справа относительно центра корпуса оборудования. Координату X определяет переменная ``half_length_with_indent50``, координата Y высчитывается с учетом параметра отступа ``port_indentation``, а координаты Z — фиксированы (25, 50 и 75).
+7. Следующая часть кода размещает декартовы точки портов в зависимости от параметра ``connection_side``: слева или справа относительно центра корпуса оборудования. Координату X определяет переменная ``half_length_with_indent50``, координата Y высчитывается с учетом параметра отступа ``port_indentation``, а координаты Z — фиксированы (25, 50 и 75).
 
 .. code-block:: lua
     :caption: Размещение декартовых точек портов с учетом параметра ``connection_side``.
@@ -123,37 +166,43 @@ main.lua
 
     if water_coolant.connection_side == "right" then
         water_coolant_origin = Point3d(half_length_with_indent50,
-                                       -half_width - water_coolant.port_indentation, 75)
+                                       half_width - water_coolant.port_indentation, 75)
     else
         water_coolant_origin = Point3d(-half_length_with_indent50,
-                                       -half_width - water_coolant.port_indentation, 75)
+                                       half_width - water_coolant.port_indentation, 75)
     end
 
     if gas_coolant.connection_side == "right" then
         gas_coolant_origin = Point3d(half_length_with_indent50,
-                                     -half_width - gas_coolant.port_indentation, 50)
+                                     half_width - gas_coolant.port_indentation, 50)
     else
         gas_coolant_origin = Point3d(-half_length_with_indent50,
-                                     -half_width - gas_coolant.port_indentation, 50)
+                                     half_width - gas_coolant.port_indentation, 50)
     end
 
     if drainage.connection_side == "right" then
         drainage_origin = Point3d(half_length_with_indent50,
-                                  -half_width - drainage.port_indentation, 25)
+                                  half_width - drainage.port_indentation, 25)
     else
         drainage_origin = Point3d(-half_length_with_indent50,
-                                  -half_width - drainage.port_indentation, 25)
+                                  half_width - drainage.port_indentation, 25)
     end
 
-.. attention:: Добавить картинку
+.. figure:: _static/Category_pipe_ports.png
+    :alt: Размещение портов трубопроводных систем
+    :figwidth: 90%
 
-Создадим функцию ``rotate_vectors``, которая будет возвращать векторы осей Z и X в зависимости от параметра ``connection_direction``, задающего направление подключения.
+    Размещение портов трубопроводных систем
+
+8. Создадим функцию ``rotate_vectors``, которая будет возвращать векторы осей Z и X в зависимости от параметра ``connection_direction``, задающего направление подключения.
 
 .. code-block:: lua
     :caption: Функция ``rotate_vectors``.
     :linenos:
 
     local function rotate_vectors(name)
+
+        -- векторы по-умолчанию
         local vector_z = Vector3d(0, 0, 1)
         local vector_x = Vector3d(1, 0, 0)
 
@@ -176,7 +225,7 @@ main.lua
         return vectors
     end
 
-Создадим функцию, которая будет добавлять параметры портам и в зависимости от вида соединения будет вызывать метод ``pipe_attributes`` или ``pipe_threaded_attributes`` (см. раздел :doc:`Порты </ports>`)
+9. Создадим функцию, которая будет добавлять параметры портам и в зависимости от вида соединения будет вызывать метод ``pipe_attributes`` или ``pipe_threaded_attributes`` (см. главу :doc:`Порты </ports>`)
 
 .. code-block:: lua
     :caption: Функция ``set_pipe_attributes``.
@@ -188,7 +237,7 @@ main.lua
             or port:pipe_attributes(params.connector_type, params.nominal_diameter)
     end
 
-Добавим порты в категорию ``category.ports.*`` с помощью метода ``place``. И далее добавим параметры портам с помощью созданной функции ``set_pipe_attributes``.
+10. Добавим порты в категорию ``category.ports.*`` с помощью метода ``place``. И далее добавим параметры портам с помощью созданной функции ``set_pipe_attributes``.
 
 .. code-block:: lua
     :caption: Добавление портов ``water_coolant``, ``gas_coolant`` и ``drainage`` со своими параметрами.
@@ -235,6 +284,6 @@ main.lua
 
 .. note:: Если у группы скрыть все параметры, то она также автоматически будет скрыта.
 
-И наши параметры в диалоге стиля объекта будут отображаться теперь так:
+И список параметров в диалоге стиля объекта будет теперь отображаться так:
 
 .. attention:: Добавить картинку

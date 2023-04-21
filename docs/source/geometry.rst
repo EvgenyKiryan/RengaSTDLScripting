@@ -316,11 +316,11 @@
         renga.Circle(renga.Point2d(0, 0), 10)}
     local placements = {
         renga.Placement3d(renga.Point3d(0, 0, 0),
-                              renga.Vector3d(1, 0, 0),
-                              renga.Vector3d(0, 1, 0)),
+                          renga.Vector3d(1, 0, 0),
+                          renga.Vector3d(0, 1, 0)),
         renga.Placement3d(renga.Point3d(40, 0, 0),
-                              renga.Vector3d(1, 0, 0),
-                              renga.Vector3d(0, 1, 0))}
+                          renga.Vector3d(1, 0, 0),
+                          renga.Vector3d(0, 1, 0))}
     local solid = renga.CreateLoftedSolid(profiles, placements)
 
     category.geometry.detailed:add_solid(solid:hide_smooth_edges())
@@ -353,13 +353,13 @@
     local start_profile = renga.Rectangle(30, 30)
     local end_profile = renga.Circle(renga.Point2d(0, 0), 10)
     local arc_2d = renga.ArcByCenter(renga.Point2d(0, 0),
-                                         renga.Point2d(-30, 0),
-                                         renga.Point2d(0, 30),
-                                         true)
+                                     renga.Point2d(-30, 0),
+                                     renga.Point2d(0, 30),
+                                     true)
     local arc_3d = renga.Curve3dByCurveAndPlacement(arc_2d,
-                                                        renga.Placement3d(renga.Point3d(0, 0, 0),
-                                                                              renga.Vector3d(0, -1, 0),
-                                                                              renga.Vector3d(0, 0, 1)))
+                                                    renga.Placement3d(renga.Point3d(0, 0, 0),
+                                                                      renga.Vector3d(0, -1, 0),
+                                                                      renga.Vector3d(0, 0, 1)))
     local solid = renga.CreateLoftedSolidByProfilesAndPath(start_profile, end_profile, arc_3d)
 
     category.geometry.detailed:add_solid(solid:hide_smooth_edges())
@@ -396,15 +396,15 @@
     :linenos:
 
     local placement = renga.Placement3d(renga.Point3d(0, 0, 0),
-                                            renga.Vector3d(1, 0, 0),
-                                            renga.Vector3d(0, 1, 0))
+                                        renga.Vector3d(1, 0, 0),
+                                        renga.Vector3d(0, 1, 0))
     local contour = renga.Rectangle(6, 15):fillet_nth(3, 3):fillet_nth(5, 3)
     local solid = renga.Revolution(placement,
-                             contour,
-                             renga.Point3d(0, 10, 0),
-                             renga.Vector3d(0, -0.5, 1),
-                             0,
-                             270)
+                                   contour,
+                                   renga.Point3d(0, 10, 0),
+                                   renga.Vector3d(0, -0.5, 1),
+                                   0,
+                                   270)
 
     category.geometry.detailed:add_solid(solid:hide_smooth_edges())
 
