@@ -11,15 +11,15 @@
     :caption: Пример 1. Создание плоской геометрии, состоящей из 2-х кривых и одного региона.
     :linenos:
 
-    local geometry = renga.api.PlanarGeometryPlane()
+    local geometry = renga.PlanarGeometryPlane()
     
-    geometry:add_curve(renga.api.Rectangle(20, 10))
-    geometry:add_curve(renga.api.Line(renga.api.Point2d(10, -5),
-                                      renga.api.Point2d(-10, 5)))
-    geometry:add_hatch_basic(renga.api.Region({renga.api.ClosedContourByPoints({renga.api.Point2d(10, -5),
-                                                                                renga.api.Point2d(-10, 5),
-                                                                                renga.api.Point2d(-10, -5)})}))
-    renga.geometry.symbol:add_planar_geometry(geometry:set_unscalable(true))
+    geometry:add_curve(renga.Rectangle(20, 10))
+    geometry:add_curve(renga.Line(renga.Point2d(10, -5),
+                                  renga.Point2d(-10, 5)))
+    geometry:add_hatch_basic(renga.Region({renga.ClosedContourByPoints({renga.Point2d(10, -5),
+                                                                        renga.Point2d(-10, 5),
+                                                                        renga.Point2d(-10, -5)})}))
+    category.geometry.symbol:add_planar_geometry(geometry:set_unscalable(true))
 
 Результат:
 

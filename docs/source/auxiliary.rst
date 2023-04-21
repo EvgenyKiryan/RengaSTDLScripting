@@ -25,37 +25,37 @@
 
 .. function:: :x_min()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть минимум по оси Y
 
 .. function:: :y_min()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть максимум по оси X
 
 .. function:: :x_max()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть максимум по оси Y
 
 .. function:: :y_max()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть ширину габаритного прямоугольника
 
 .. function:: :width()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть высоту габаритного прямоугольника
 
 .. function:: :height()
 
-    :rtype: number
+    :rtype: Number
 
 .. _boundingbox:
 
@@ -80,37 +80,37 @@
 
 .. function:: :x_min()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть минимум по оси Y
 
 .. function:: :y_min()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть минимум по оси Z
 
 .. function:: :z_min()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть максимум по оси X
 
 .. function:: :x_max()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть максимум по оси Y
 
 .. function:: :y_max()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть максимум по оси Z
 
 .. function:: :z_max()
 
-    :rtype: number
+    :rtype: Number
 
 * Вернуть центр габаритного куба
 
@@ -126,9 +126,9 @@
 .. function:: is_metric_equal(num1, num2)
 
     :param num1: Задает сравниваемую переменную.
-    :type num1: number
+    :type num1: Number
     :param num2: Задает переменную для сравнения.
-    :type num2: number
+    :type num2: Number
     :rtype: boolean
 
 * Сравнить "<" с метрической точностью
@@ -136,9 +136,9 @@
 .. function:: is_metric_less(num1, num2)
 
     :param num1: Задает сравниваемую переменную.
-    :type num1: number
+    :type num1: Number
     :param num2: Задает переменную для сравнения.
-    :type num2: number
+    :type num2: Number
     :rtype: boolean
 
 * Сравнить "<=" с метрической точностью
@@ -146,9 +146,9 @@
 .. function:: is_metric_less_or_equal(num1, num2)
 
     :param num1: Задает сравниваемую переменную.
-    :type num1: number
+    :type num1: Number
     :param num2: Задает переменную для сравнения.
-    :type num2: number
+    :type num2: Number
     :rtype: boolean
 
 * Сравнить ">" с метрической точностью
@@ -156,9 +156,9 @@
 .. function:: is_metric_greater(num1, num2)
 
     :param num1: Задает сравниваемую переменную.
-    :type num1: number
+    :type num1: Number
     :param num2: Задает переменную для сравнения.
-    :type num2: number
+    :type num2: Number
     :rtype: boolean
 
 * Сравнить ">=" с метрической точностью
@@ -166,16 +166,17 @@
 .. function:: is_metric_greater_or_equal(num1, num2)
 
     :param num1: Задает сравниваемую переменную.
-    :type num1: number
+    :type num1: Number
     :param num2: Задает переменную для сравнения.
-    :type num2: number
+    :type num2: Number
     :rtype: boolean
 
 Сервисные функции
 -----------------
 
-* Вывод аргументов в журнал aecapp.log
+* Вывод аргументов в журнал AecApp.log
 
 .. function:: print(*args)
 
-    :param args: Задает функцию или переменную
+    :param args: Задает функцию или переменную, сконвертированную в строку.
+    :type args: String

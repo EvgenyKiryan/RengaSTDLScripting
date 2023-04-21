@@ -57,9 +57,9 @@ Renga Lua Scripting
 
    tutorial_intro
 
-   tutorial_dinamic
-
    tutorial_static
+
+   tutorial_dinamic
 
    tutorial_outro
 

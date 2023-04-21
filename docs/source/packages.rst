@@ -1,73 +1,88 @@
-Интерфейс взаимодействия с Renga
-================================
+Lua-интерфейс Renga
+===================
 
-Для непосредственного взаимодействия с Renga используется интерфейс ``renga``, в котором определены таблицы, содержащие объекты, перечисления и функции:
+Скрипты, описывающие геометрическое представление категории, расположение портов и поведение параметров из ``parameters.json``, создаются в файле ``main.lua``.
 
-``renga.geometry`` — таблица объектов, создающих геометрию объекта в Renga для различного отображения:
+Описанию встроенных функций, создающих пользовательскую категорию в Renga, посвященна данная часть руководства.
 
-+ ``renga.reometry.detailed`` — создание твердотельной 3D-геометрии и :ref:`вспомогательной плоской геометрии <aux>` в 3D;    
-+ ``renga.reometry.symbolic`` — создание плоской геометрии на различных проекциях с условным уровнем детализации;
-+ ``renga.reometry.symbol`` — создание плоской геометрии на различных проекциях с символьным уровнем детализации.
-
-``renga.ports`` — таблица объектов, создающих порты оборудования.
-
-``renga.api`` — таблица функций, порождающих геометрию.
-
-``renga.ui`` — отображение параметров в диалоге стиля объекта (на вкладке "Параметры").
-
-``renga.core_enum`` — таблица :doc:`системных перечислений </coreenums>`.
-
-``renga.parameters`` — таблица групп параметров.
-
-Ниже приведены общие примеры использования встроенных функций для взаимодействия с Renga. Более подробно функции рассматриваются в соответствующих разделах.
+.. note:: Кроме использования встроенных функций, разработчики могут использовать в скриптах любые стандартные библиотеки Lua, например, математическую библиотеку `math <http://lua-users.org/wiki/MathLibraryTutorial>`_.
 
 Создание геометрического примитива c помощью встроенных функций
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+---------------------------------------------------------------
 
-Таблица:  ``renga.api``
+Геометрическое представление объектов инженерных систем создается из геометрических примитивов: двумерных и трёхмерных. Функции, порождающие геометрические примитивы, а также :doc:`системные перечисления </coreenums>` являются объектами таблицы ``renga``.
+
+Подробному описанию порождающих функций посвящены отдельные разделы руководства:
+
+1. :doc:`Базовые типы геометрии </basetypes>`.
+2. :doc:`Графические примитивы </symbolic>`.
+3. :doc:`Плоская геометрия </planar>`.
+4. :doc:`Твёрдотельная 3D-геометрия </geometry>`.
+5. :doc:`Вспомогательные функции </auxiliary>`.
+
+Общие примеры:
 
 .. code-block:: lua
     :caption: Пример 1. Создание твердотельной 3D-геометрии в виде сферы, радиусом ``radius``:
     :linenos:
 
-    local solid = renga.api.Sphere(radius)
+    local solid = renga.Sphere(radius)
 
 .. code-block:: lua
     :caption: Пример 2. Создание плоской геометрии PlanarGeometryAxis90():
     :linenos:
 
-    local planar_geometry = renga.api.PlanarGeometryAxis90()
+    local planar_geometry = renga.PlanarGeometryAxis90()
 
 .. code-block:: lua
     :caption: Пример 3. Создание точки в трёхмерном пространстве:
     :linenos:
 
-    local point_3d = renga.api.Point3d(x, y, z)   
+    local point_3d = renga.Point3d(x, y, z)
 
-Передача в Renga геометрического примитива для создания твердотельной 3D-геометрии объекта
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Создание категории
+------------------
 
-Объект:  ``renga.geometry.detailed``
+Для создания категории используется интерфейс ``category``, содержащий объекты и функции:
+
+``category.geometry`` — таблица объектов, создающих геометрию категории для различного отображения:
+
++ ``category.geometry.detailed`` — создание детальной геометрии и :ref:`вспомогательной плоской геометрии <aux>` в 3D;    
++ ``category.geometry.symbolic`` — создание условного изображения (плоской геометрии) на различных проекциях;
++ ``category.geometry.symbol`` — создание символьного изображения (плоской геометрии) на различных проекциях.
+
+``category.ports`` — таблица объектов, создающих порты оборудования.
+
+``category.ui`` — отображение параметров в диалоге стиля объекта (на вкладке "Параметры").
+
+``category.parameters`` — таблица групп параметров.
+
+.. _cube_example:
+
+Создание детальной геометрии категории
+""""""""""""""""""""""""""""""""""""""
+
+Объект:  ``category.geometry.detailed``
 
 Метод:
 
 .. function:: :add_solid(*args)
 
-    :param args: В качестве аргументов передаётся твердотельная 3D-геометрия и его методы.
+    :param args: В качестве аргументов передаётся твердотельная 3D-геометрия и её методы.
     :type args: :doc:`Solid <../geometry>`
 
 .. code-block:: lua
     :caption: Пример 4. Создание 3D-геометрии в форме куба с размером грани ``size``:
     :linenos:
 
-    local solid = renga.api.Cube(size)
+    local solid = renga.Cube(size)
 
-    renga.geometry.detailed:add_solid(solid)
+    category.geometry.detailed:add_solid(solid)
 
-Передача в Renga примитива для создания вспомогательной геометрии объекта в 3D
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Создание вспомогательной геометрии категории
+""""""""""""""""""""""""""""""""""""""""""""
 
-Объект:  ``renga.geometry.detailed``
+Объект:  ``category.geometry.detailed``
 
 .. _aux:
 
@@ -84,17 +99,17 @@
     :caption: Пример 5. Создание 3D-геометрии в форме куба и дополнительно вспомогательной геометрии с размещением в ЛСК ``placement``:
     :linenos:
 
-    local solid = renga.api.Cube(size)
-    local aux_geometry = renga.api.PlanarGeometryGlobalZ()
+    local solid = renga.Cube(size)
+    local aux_geometry = renga.PlanarGeometryGlobalZ()
 
     aux_geometry:add_hatch_basic(region)
-    renga.geometry.detailed:add_solid(solid)
-    renga.geometry.detailed:add_planar_geometry(aux_geometry:set_placement(placement))
+    category.geometry.detailed:add_solid(solid)
+    category.geometry.detailed:add_planar_geometry(aux_geometry:set_placement(placement))
 
-Передача в Renga геометрии для создания условного изображения объекта
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Создание условного изображения категории
+""""""""""""""""""""""""""""""""""""""""
 
-Объект:  ``renga.geometry.symbolic``
+Объект:  ``category.geometry.symbolic``
 
 Метод:
 
@@ -107,16 +122,16 @@
     :caption: Пример 6. Создание условного отображения в виде квадрата с размером грани ``size``:
     :linenos:
 
-    local plane_geometry = renga.api.PlanarGeometryPlane()
-    local curve_2d = renga.api.Rectangle(size, size)
+    local plane_geometry = renga.PlanarGeometryPlane()
+    local curve_2d = renga.Rectangle(size, size)
 
     plane_geometry:add_curve(curve_2d)   
-    renga.geometry.symbolic:add_planar_geometry(plane_geometry)
+    category.geometry.symbolic:add_planar_geometry(plane_geometry)
 
-Передача в Renga геометрии для создания символьного изображение объекта
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Создание символьного изображение категории
+""""""""""""""""""""""""""""""""""""""""""
 
-Объект:  ``renga.geometry.symbol``
+Объект:  ``category.geometry.symbol``
 
 Метод:
 
@@ -129,31 +144,31 @@
     :caption: Пример 7. Создание символьного отображения в виде квадрата с размером грани ``size``:
     :linenos:
 
-    local plane_geometry = renga.api.PlanarGeometryPlane()
-    local curve_2d = renga.api.Rectangle(size, size)
+    local plane_geometry = renga.PlanarGeometryPlane()
+    local curve_2d = renga.Rectangle(size, size)
 
     plane_geometry:add_curve(curve_2d)
-    renga.geometry.symbol:add_planar_geometry(plane_geometry:set_unscalable(true))
+    category.geometry.symbol:add_planar_geometry(plane_geometry:set_unscalable(true))
 
 .. _port:
 
-Создание в Renga точки подключения (порта) объекта
-""""""""""""""""""""""""""""""""""""""""""""""""""
+Создание точки подключения (порта) категории
+""""""""""""""""""""""""""""""""""""""""""""
 
-Таблица:  ``renga.ports``
+Таблица:  ``category.ports``
 
 .. code-block:: lua
     :caption: Пример 8. Создание порта объекта с входящим направлением потока ``inlet`` c заданием собственной ЛСК ``inlet_placement``:
     :linenos:
 
-    renga.ports.inlet:place(inlet_placement)
+    category.ports.inlet:place(inlet_placement)
 
 .. note:: Имена портов берутся из JSON
 
 Задание видимости параметра в диалоге стиля объекта
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-Объект:  ``renga.ui``
+Объект:  ``category.ui``
 
 Метод:
 
@@ -170,12 +185,12 @@
     :caption: Пример 9. Создание видимости параметра ``body_width`` группы параметров ``dimensions`` во вкладке "Параметры" окна стиля объекта:
     :linenos:
 
-    renga.ui:set_param_visible("dimensions.body_width", true)
+    category.ui:set_param_visible("dimensions.body_width", true)
 
 Задание видимости группы параметров в диалоге стиля объекта
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Объект:  ``renga.ui``
+Объект:  ``category.ui``
 
 Метод:
 
@@ -192,4 +207,4 @@
     :caption: Пример 10. Создание видимости группы параметров ``electric_actuator_dimensions`` во вкладке "Параметры" окна стиля объекта:
     :linenos:
 
-    renga.ui:set_group_visible("electric_actuator_dimensions", true)
+    category.ui:set_group_visible("electric_actuator_dimensions", true)

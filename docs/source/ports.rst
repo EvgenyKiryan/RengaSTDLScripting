@@ -19,7 +19,7 @@
 
 * Задать у порта якорь на трассе
 
-.. note:: Если не задан, он будет соответствовать оси Z порта
+.. note:: Якорь задается для деталей и аксессуаров трубопроводов и воздуховодов. Если не задан, он будет соответствовать оси Z порта.
 
 .. function:: :anchor(axis)
 
@@ -39,8 +39,8 @@
     :caption: Пример 1. Создание параметров ``connector_type`` и ``nominal_diameter`` порта ``cold_water`` трубопроводной системы.
     :linenos:
 
-    renga.ports.inlet:pipe_attributes(renga.parameters.cold_water.connector_type,
-                                      renga.parameters.cold_water.nominal_diameter)
+    category.ports.inlet:pipe_attributes(category.parameters.cold_water.connector_type,
+                                         category.parameters.cold_water.nominal_diameter)
 
 * Задать параметры порта трубопроводных систем с резьбовым соединением
 
@@ -67,6 +67,6 @@
     :caption: Пример 2. Создание параметров ``connector_type``, ``body_width`` и ``body_height`` порта ``exhaust`` воздуховодной системы.
     :linenos:
 
-    renga.ports.outlet:duct_rectangular_attributes(renga.parameters.exhaust.connector_type,
-                                                   renga.parameters.dimensions.body_width,
-                                                   renga.parameters.dimensions.body_height)
+    category.ports.outlet:duct_rectangular_attributes(category.parameters.exhaust.connector_type,
+                                                      category.parameters.dimensions.body_width,
+                                                      category.parameters.dimensions.body_height)

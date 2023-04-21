@@ -22,9 +22,9 @@
     :caption: Пример 1.
     :linenos:
 
-    local solid = renga.api.Cube(20)
+    local solid = renga.Cube(20)
 
-    renga.geometry.detailed:add_solid(solid)
+    category.geometry.detailed:add_solid(solid)
 
 Результат:
 
@@ -53,9 +53,9 @@
     :caption: Пример 2.
     :linenos:
 
-    local solid = renga.api.Box(40, 15, 20)
+    local solid = renga.Box(40, 15, 20)
 
-    renga.geometry.detailed:add_solid(solid)
+    category.geometry.detailed:add_solid(solid)
 
 Результат:
 
@@ -78,9 +78,9 @@
     :caption: Пример 3.
     :linenos:
 
-    local solid = renga.api.Sphere(10)
+    local solid = renga.Sphere(10)
 
-    renga.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
 
 Результат:
 
@@ -107,9 +107,9 @@
     :caption: Пример 4.
     :linenos:
 
-    local solid = renga.api.Cylinder(10, 40)
+    local solid = renga.Cylinder(10, 40)
 
-    renga.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
 
 Результат:
 
@@ -136,9 +136,9 @@
     :caption: Пример 5.
     :linenos:
 
-    local solid = renga.api.Cone(10, 40)
+    local solid = renga.Cone(10, 40)
 
-    renga.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
 
 Результат:
 
@@ -167,9 +167,9 @@
     :caption: Пример 6.
     :linenos:
 
-    local solid = renga.api.ConicalFrustum(10, 5, 20)
+    local solid = renga.ConicalFrustum(10, 5, 20)
 
-    renga.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
 
 Результат:
 
@@ -198,9 +198,9 @@
     :caption: Пример 7.
     :linenos:
 
-    local solid = renga.api.Pyramid(25, 15, 20)
+    local solid = renga.Pyramid(25, 15, 20)
 
-    renga.geometry.detailed:add_solid(solid)
+    category.geometry.detailed:add_solid(solid)
 
 Результат:
 
@@ -208,6 +208,8 @@
     :height: 230 px
     :width: 400 px
     :align: center
+
+.. _extrusion:
 
 Тело выдавливания
 ^^^^^^^^^^^^^^^^^
@@ -226,22 +228,22 @@
     :linenos:
 
     local points = {
-        renga.api.Point2d(0, 0),
-        renga.api.Point2d(0, 10),
-        renga.api.Point2d(10, 10),
-        renga.api.Point2d(10, 8),
-        renga.api.Point2d(8, 8),
-        renga.api.Point2d(8, 6),
-        renga.api.Point2d(6, 6),
-        renga.api.Point2d(6, 4),
-        renga.api.Point2d(4, 4),
-        renga.api.Point2d(4, 2),
-        renga.api.Point2d(2, 2),
-        renga.api.Point2d(2, 0)}
-    local contour = renga.api.ClosedContourByPoints(points)
-    local solid = renga.api.Extrusion(contour, 40)
+        renga.Point2d(0, 0),
+        renga.Point2d(0, 10),
+        renga.Point2d(10, 10),
+        renga.Point2d(10, 8),
+        renga.Point2d(8, 8),
+        renga.Point2d(8, 6),
+        renga.Point2d(6, 6),
+        renga.Point2d(6, 4),
+        renga.Point2d(4, 4),
+        renga.Point2d(4, 2),
+        renga.Point2d(2, 2),
+        renga.Point2d(2, 0)}
+    local contour = renga.ClosedContourByPoints(points)
+    local solid = renga.Extrusion(contour, 40)
 
-    renga.geometry.detailed:add_solid(solid)
+    category.geometry.detailed:add_solid(solid)
 
 Результат:
 
@@ -269,22 +271,22 @@
     :linenos:
 
     local points = {
-        renga.api.Point2d(0, 0),
-        renga.api.Point2d(0, 10),
-        renga.api.Point2d(10, 10),
-        renga.api.Point2d(10, 8),
-        renga.api.Point2d(8, 8),
-        renga.api.Point2d(8, 6),
-        renga.api.Point2d(6, 6),
-        renga.api.Point2d(6, 4),
-        renga.api.Point2d(4, 4),
-        renga.api.Point2d(4, 2),
-        renga.api.Point2d(2, 2),
-        renga.api.Point2d(2, 0)}
-    local contour = renga.api.ClosedContourByPoints(points)
-    local solid = renga.api.ExtrusionWithThickness(contour, 15, 0.5)
+        renga.Point2d(0, 0),
+        renga.Point2d(0, 10),
+        renga.Point2d(10, 10),
+        renga.Point2d(10, 8),
+        renga.Point2d(8, 8),
+        renga.Point2d(8, 6),
+        renga.Point2d(6, 6),
+        renga.Point2d(6, 4),
+        renga.Point2d(4, 4),
+        renga.Point2d(4, 2),
+        renga.Point2d(2, 2),
+        renga.Point2d(2, 0)}
+    local contour = renga.ClosedContourByPoints(points)
+    local solid = renga.ExtrusionWithThickness(contour, 15, 0.5)
 
-    renga.geometry.detailed:add_solid(solid)
+    category.geometry.detailed:add_solid(solid)
 
 Результат:
 
@@ -310,18 +312,18 @@
     :linenos:
 
     local profiles = {
-        renga.api.Rectangle(30, 30),
-        renga.api.Circle(renga.api.Point2d(0, 0), 10)}
+        renga.Rectangle(30, 30),
+        renga.Circle(renga.Point2d(0, 0), 10)}
     local placements = {
-        renga.api.Placement3d(renga.api.Point3d(0, 0, 0),
-                              renga.api.Vector3d(1, 0, 0),
-                              renga.api.Vector3d(0, 1, 0)),
-        renga.api.Placement3d(renga.api.Point3d(40, 0, 0),
-                              renga.api.Vector3d(1, 0, 0),
-                              renga.api.Vector3d(0, 1, 0))}
-    local solid = renga.api.CreateLoftedSolid(profiles, placements)
+        renga.Placement3d(renga.Point3d(0, 0, 0),
+                              renga.Vector3d(1, 0, 0),
+                              renga.Vector3d(0, 1, 0)),
+        renga.Placement3d(renga.Point3d(40, 0, 0),
+                              renga.Vector3d(1, 0, 0),
+                              renga.Vector3d(0, 1, 0))}
+    local solid = renga.CreateLoftedSolid(profiles, placements)
 
-    renga.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
 
 Результат:
 
@@ -348,19 +350,19 @@
     :caption: Пример 11.
     :linenos:
 
-    local start_profile = renga.api.Rectangle(30, 30)
-    local end_profile = renga.api.Circle(renga.api.Point2d(0, 0), 10)
-    local arc_2d = renga.api.ArcByCenter(renga.api.Point2d(0, 0),
-                                         renga.api.Point2d(-30, 0),
-                                         renga.api.Point2d(0, 30),
+    local start_profile = renga.Rectangle(30, 30)
+    local end_profile = renga.Circle(renga.Point2d(0, 0), 10)
+    local arc_2d = renga.ArcByCenter(renga.Point2d(0, 0),
+                                         renga.Point2d(-30, 0),
+                                         renga.Point2d(0, 30),
                                          true)
-    local arc_3d = renga.api.Curve3dByCurveAndPlacement(arc_2d,
-                                                        renga.api.Placement3d(renga.api.Point3d(0, 0, 0),
-                                                                              renga.api.Vector3d(0, -1, 0),
-                                                                              renga.api.Vector3d(0, 0, 1)))
-    local solid = renga.api.CreateLoftedSolidByProfilesAndPath(start_profile, end_profile, arc_3d)
+    local arc_3d = renga.Curve3dByCurveAndPlacement(arc_2d,
+                                                        renga.Placement3d(renga.Point3d(0, 0, 0),
+                                                                              renga.Vector3d(0, -1, 0),
+                                                                              renga.Vector3d(0, 0, 1)))
+    local solid = renga.CreateLoftedSolidByProfilesAndPath(start_profile, end_profile, arc_3d)
 
-    renga.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
 
 Результат:
 
@@ -393,18 +395,18 @@
     :caption: Пример 12.
     :linenos:
 
-    local placement = renga.api.Placement3d(renga.api.Point3d(0, 0, 0),
-                                            renga.api.Vector3d(1, 0, 0),
-                                            renga.api.Vector3d(0, 1, 0))
-    local contour = renga.api.Rectangle(6, 15):fillet_nth(3, 3):fillet_nth(5, 3)
-    local solid = renga.api.Revolution(placement,
+    local placement = renga.Placement3d(renga.Point3d(0, 0, 0),
+                                            renga.Vector3d(1, 0, 0),
+                                            renga.Vector3d(0, 1, 0))
+    local contour = renga.Rectangle(6, 15):fillet_nth(3, 3):fillet_nth(5, 3)
+    local solid = renga.Revolution(placement,
                              contour,
-                             renga.api.Point3d(0, 10, 0),
-                             renga.api.Vector3d(0, -0.5, 1),
+                             renga.Point3d(0, 10, 0),
+                             renga.Vector3d(0, -0.5, 1),
                              0,
                              270)
 
-    renga.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
 
 Результат:
 
@@ -462,10 +464,10 @@
     :caption: Пример 13.
     :linenos:
 
-    local cube = renga.api.Cube(20)
-    local sphere = renga.api.Sphere(10)
+    local cube = renga.Cube(20)
+    local sphere = renga.Sphere(10)
 
-    renga.geometry.detailed:add_solid(
+    category.geometry.detailed:add_solid(
         cube + sphere:shift(10, 0, 10):hide_smooth_edges())
 
 Результат:
@@ -485,10 +487,10 @@
     :caption: Пример 14.
     :linenos:
 
-    local cube = renga.api.Cube(20)
-    local sphere = renga.api.Sphere(10)
+    local cube = renga.Cube(20)
+    local sphere = renga.Sphere(10)
 
-    renga.geometry.detailed:add_solid(
+    category.geometry.detailed:add_solid(
         cube - sphere:shift(10, 0, 10):hide_smooth_edges())
 
 Результат:
