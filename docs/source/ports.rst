@@ -1,9 +1,9 @@
 Порты
 =====
 
-Порты служат для подключения оборудования к трассам инженерных систем. Они являются объектами таблицы ``renga.ports``.
+Порты служат для подключения оборудования к трассам инженерных систем. Они являются объектами таблицы ``Style.Ports``.
 
-Пример создания порта см. :ref:`Создание в Renga точки подключения (порта) объекта <port>`
+Чтобы создать порт достаточно объявить его в JSON.
 
 Методы объекта
 --------------
@@ -12,23 +12,33 @@
 
 .. note:: По-умолчанию порты создаются в начале координат 
 
-.. function:: :place(placement)
+.. function:: :SetPlacement(placement)
 
     :param placement: Задает ЛСК порта.
-    :type placement: :ref:`Placement3d <placement3d>`
+    :type placement: :ref:`Placement3D <placement3d>`
+
+.. _port:
+
+.. code-block:: lua
+    :caption: Пример 1. Размещение порта ``ColdWater`` объекта в ЛСК ``inletPlacement``:
+    :linenos:
+
+    Style.Ports.ColdWater:SetPlacement(inletPlacement)
+
+.. note:: Имена портов берутся из JSON
 
 * Задать у порта якорь на трассе
 
-.. note:: Якорь задается для деталей и аксессуаров трубопроводов и воздуховодов. Если не задан, он будет соответствовать оси Z порта.
+.. note:: Якорь задается в случае эксцентрического перехода у деталей и аксессуаров трубопроводов и воздуховодов. Благодаря ему трубы и воздуховоды будут прокладываться со смещением от трассы (в случае эксцентрического перехода). Если не задан, он будет соответствовать оси Z порта.
 
-.. function:: :anchor(axis)
+.. function:: :Anchor(axis)
 
     :param axis: Задает ось.
     :type axis: :ref:`Axis <axis>`
 
-* Задать параметры порта трубопроводных систем
+* Задать параметры порту трубопроводных систем
 
-.. function:: :pipe_attributes(*args)
+.. function:: :PipeAttributes(*args)
 
     :param args: Перечисление параметров.
     :type args: Имена параметров, указанных в JSON
@@ -36,37 +46,37 @@
 .. note:: См. Создание параметра — тип параметра :ref:`Enumeration <enumeration>`
 
 .. code-block:: lua
-    :caption: Пример 1. Создание параметров ``connector_type`` и ``nominal_diameter`` порта ``cold_water`` трубопроводной системы.
+    :caption: Пример 2. Создание параметров ``connector_type`` и ``nominal_diameter`` порта ``ColdWater`` трубопроводной системы.
     :linenos:
 
-    category.ports.inlet:pipe_attributes(category.parameters.cold_water.connector_type,
-                                         category.parameters.cold_water.nominal_diameter)
+    Style.Ports.ColdWater:PipeAttributes(Style.Parameters.ColdWater.connector_type,
+                                         Style.Parameters.ColdWater.nominal_diameter)
 
 * Задать параметры порта трубопроводных систем с резьбовым соединением
 
-.. function:: :pipe_threaded_attributes(*args)
+.. function:: :PipeThreadedAttributes(*args)
 
     :param args: Перечисление параметров.
     :type args: Имена параметров, указанных в JSON
 
 * Задать параметры порта вентиляционных систем с воздуховодами круглого сечения
 
-.. function:: :duct_circular_attributes(*args)
+.. function:: :DuctCircularAttributes(*args)
 
     :param args: Перечисление параметров.
     :type args: Имена параметров, указанных в JSON
 
 * Задать параметры порта вентиляционных систем с воздуховодами прямоугольного сечения
 
-.. function:: :duct_rectangular_attributes(*args)
+.. function:: :DuctRectangularAttributes(*args)
 
     :param args: Перечисление параметров.
     :type args: Имена параметров, указанных в JSON
 
 .. code-block:: lua
-    :caption: Пример 2. Создание параметров ``connector_type``, ``body_width`` и ``body_height`` порта ``exhaust`` воздуховодной системы.
+    :caption: Пример 3. Создание параметров ``connector_type``, ``body_width`` и ``body_height`` порта ``Exhaust`` воздуховодной системы.
     :linenos:
 
-    category.ports.outlet:duct_rectangular_attributes(category.parameters.exhaust.connector_type,
-                                                      category.parameters.dimensions.body_width,
-                                                      category.parameters.dimensions.body_height)
+    Style.Ports.Exhaust:DuctRectangularAttributes(Style.Parameters.Exhaust.connector_type,
+                                                  Style.Parameters.Dimensions.body_width,
+                                                  Style.Parameters.Dimensions.body_height)

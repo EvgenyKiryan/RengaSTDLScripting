@@ -5,12 +5,12 @@
 
 .. _point2d:
 
-Декартова двухмерная точка (класс Point2d)
+Декартова двухмерная точка (класс Point2D)
 ------------------------------------------
 
 Конструктор класса:
 
-.. function:: Point2d(x, y)
+.. function:: Point2D(x, y)
 
     :param x: Задает координату по оси X.
     :type x: Number
@@ -22,44 +22,36 @@
 
 * Сместить по осям X, Y
 
-.. function:: :shift(d_x, d_y)
+.. function:: :Shift(dX, dY)
 
-    :param d_x: Задает смещение по оси X.
-    :type d_x: Number
-    :param d_y: Задает смещение по оси Y.
-    :type d_y: Number
+    :param dX: Задает смещение по оси X.
+    :type dX: Number
+    :param dY: Задает смещение по оси Y.
+    :type dY: Number
 
 * Повернуть на угол
 
-.. function:: :rotate(point, angle)
+.. function:: :Rotate(point, angle)
 
     :param point: Задает точку центра вращения.
-    :type point: :ref:`Point2d <point2d>`
+    :type point: :ref:`Point2D <point2d>`
     :param angle: Задает угол поворота.
     :type angle: Number
 
 * Вернуть копию объекта
 
-.. function:: :clone()
+.. function:: :Clone()
 
     :return: Двухмерная точка
-    :rtype: :ref:`Point2d <point2d>`
+    :rtype: :ref:`Point2D <point2d>`
 
 * Вернуть значение координаты X точки
 
-.. function:: :x()
+.. function:: :X()
 
 * Вернуть значение координаты Y точки
 
-.. function:: :y()
-
-* Сконвертировать точку в строку
-
-.. function:: :tostring(point)
-
-    :param point: Задает точку.
-    :type point: :ref:`Point2d <point2d>`
-    :rtype: String
+.. function:: :Y()
 
 Операторы
 ^^^^^^^^^^
@@ -73,12 +65,12 @@
 
 .. _point3d:
 
-Точка в трёхмерном пространстве (класс Point3d)
+Точка в трёхмерном пространстве (класс Point3D)
 -----------------------------------------------
 
 Конструктор класса:
 
-.. function:: Point3d(x, y, z)
+.. function:: Point3D(x, y, z)
 
     :param x: Задает координату по оси X.
     :type x: Number
@@ -92,42 +84,42 @@
 
 * Сместить по осям X, Y, Z
 
-.. function:: :shift(d_x, d_y, d_z)
+.. function:: :Shift(dX, dY, dZ)
 
-    :param d_x: Задает смещение по оси X.
-    :type d_x: Number
-    :param d_y: Задает смещение по оси Y.
-    :type d_y: Number
-    :param d_z: Задает смещение по оси Z.
-    :type d_z: Number
+    :param dX: Задает смещение по оси X.
+    :type dX: Number
+    :param dY: Задает смещение по оси Y.
+    :type dY: Number
+    :param dZ: Задает смещение по оси Z.
+    :type dZ: Number
 
 * Повернуть на угол
 
-.. function:: :rotate(axis, angle)
+.. function:: :Rotate(axis, angle)
 
     :param axis: Задает ось вращения.
-    :type axis: :ref:`Vector3d <vector3d>`
+    :type axis: :ref:`Vector3D <vector3d>`
     :param angle: Задает угол поворота.
     :type angle: Number
 
 * Вернуть копию объекта
 
-.. function:: :clone()
+.. function:: :Clone()
 
     :return: Копия точки
-    :rtype: :ref:`Point3d <point3d>`  
+    :rtype: :ref:`Point3D <point3d>`  
 
 * Вернуть значение координаты X точки
 
-.. function:: :x()
+.. function:: :X()
 
 * Вернуть значение координаты Y точки
 
-.. function:: :y()
+.. function:: :Y()
 
 * Вернуть значение координаты Z точки
 
-.. function:: :z()    
+.. function:: :Z()    
 
 Операторы
 ^^^^^^^^^^
@@ -137,25 +129,25 @@
 .. function:: +
 
     :return: Трёхмерный вектор
-    :rtype: :ref:`Vector3d <vector3d>`  
+    :rtype: :ref:`Vector3D <vector3d>`  
 
 * Вычесть точки
 
 .. function:: -
 
     :return: Трёхмерный вектор
-    :rtype: :ref:`Vector3d <vector3d>` 
+    :rtype: :ref:`Vector3D <vector3d>` 
 
 .. _vector3d:
 
-Вектор в трёхмерном пространстве (класс Vector3d)
+Вектор в трёхмерном пространстве (класс Vector3D)
 -------------------------------------------------
 
 Вектор — элемент геометрического пространства, характеризующийся направлением. Направление вектора задаётся набором коэффициентов (соотношение направления) по координатным осям. Как правило, коэффициенты указываются от -1 до 1. Поскольку вектор указывает только направление, соотношение направлений не обязательно нормализовывать.
 
 Конструктор класса:
 
-.. function:: Vector3d(x, y, z)
+.. function:: Vector3D(x, y, z)
 
     :param x: Задает соотношение направления по оси X.
     :type x: Number
@@ -169,15 +161,15 @@
 
 * Вернуть соотношение направления по оси X
 
-.. function:: :x()
+.. function:: :X()
 
 * Вернуть соотношение направления по оси Y
 
-.. function:: :y()
+.. function:: :Y()
 
 * Вернуть соотношение направления по оси Z
 
-.. function:: :z()
+.. function:: :Z()
 
 Операторы
 ^^^^^^^^^^
@@ -187,7 +179,7 @@
 .. function:: -
 
     :return: Вектор, обращенный в обратную сторону
-    :rtype: :ref:`Vector3d <vector3d>`  
+    :rtype: :ref:`Vector3D <vector3d>`  
 
 .. _axis:
 
@@ -201,9 +193,9 @@
 .. function:: Axis(point, vector)
 
     :param point: Задает точку начала оси.
-    :type point: :ref:`Point3d <point3d>`
+    :type point: :ref:`Point3D <point3d>`
     :param vector: Задает направление оси.
-    :type vector: :ref:`Vector3d <vector3d>`
+    :type vector: :ref:`Vector3D <vector3d>`
 
 Альтернативные конструкторы:
 
@@ -225,19 +217,19 @@
 Методы класса
 ^^^^^^^^^^^^^
 
-* Вернуть вектор оси Z
+* Вернуть вектор оси
 
 .. attention:: Проверить!
 
-.. function:: :axis_z()
+.. function:: :GetVector()
 
-    :rtype: :ref:`Vector3d <vector3d>`
+    :rtype: :ref:`Vector3D <vector3d>`
 
 * Вернуть точку начала оси
 
-.. function:: :origin()
+.. function:: :Origin()
 
-    :rtype: :ref:`Point3d <point3d>`
+    :rtype: :ref:`Point3D <point3d>`
 
 Операторы
 ^^^^^^^^^^
@@ -251,96 +243,96 @@
 
 .. _placement3d:
 
-Локальная система координат в трёхмерном пространстве (класс Placement3d)
+Локальная система координат в трёхмерном пространстве (класс Placement3D)
 -------------------------------------------------------------------------
 
 Конструктор класса:
 
-.. function:: Placement3d(origin, vector_z, vector_x)
+.. function:: Placement3D(origin, vectorZ, vectorX)
 
     :param origin: Задает точку начала координат.
-    :type origin: :ref:`Point3d <point3d>`
-    :param vector_z: Задает ориентацию оси Z.
-    :type vector_z: :ref:`Vector3d <vector3d>`
-    :param vector_x: Задает ориентацию оси X.
-    :type vector_x: :ref:`Vector3d <vector3d>`
+    :type origin: :ref:`Point3D <point3d>`
+    :param vectorZ: Задает ориентацию оси Z.
+    :type vectorZ: :ref:`Vector3D <vector3d>`
+    :param vectorX: Задает ориентацию оси X.
+    :type vectorX: :ref:`Vector3D <vector3d>`
 
 Методы класса
 ^^^^^^^^^^^^^
 
 * Сместить ЛСК по осям X, Y, Z
 
-.. function:: :shift(d_x, d_y, d_z)
+.. function:: :Shift(dX, dY, dZ)
 
-    :param d_x: Задает смещение по оси X.
-    :type d_x: Number
-    :param d_y: Задает смещение по оси Y.
-    :type d_y: Number
-    :param d_z: Задает смещение по оси Z.
-    :type d_z: Number
+    :param dX: Задает смещение по оси X.
+    :type dX: Number
+    :param dY: Задает смещение по оси Y.
+    :type dY: Number
+    :param dZ: Задает смещение по оси Z.
+    :type dZ: Number
 
 * Повернуть ЛСК относительно заданной оси
 
-.. function:: :rotate(axis, angle)
+.. function:: :Rotate(axis, angle)
 
     :param axis: Задает ось вращения.
     :type axis: :ref:`Axis <axis>`
     :param angle: Задает угол вращения.
     :type angle: Number
 
-* Переместить СК в новую ЛСК
+* Трансформировать СК в новую ЛСК
 
-.. function:: :place(placement)
+.. function:: :Transform(placement)
 
     :param placement: Задает новую ЛСК.
-    :type placement: :ref:`Placement3d <placement3d>`
+    :type placement: :ref:`Placement3D <placement3d>`
 
 * Вернуть копию объекта
 
-.. function:: :clone()
+.. function:: :Clone()
 
     :return: Копия ЛСК
-    :rtype: :ref:`Placement3d <placement3d>`
+    :rtype: :ref:`Placement3D <placement3d>`
 
 * Вернуть начало ЛСК
 
-.. function:: :origin()
+.. function:: :Origin()
 
     :return: Начало ЛСК
-    :rtype: :ref:`Point3d <point3d>`
+    :rtype: :ref:`Point3D <point3d>`
 
 * Вернуть ось X
 
-.. function:: :axis_x()
+.. function:: :AxisX()
 
     :rtype: :ref:`Axis <axis>`
 
 * Вернуть ось Y
 
-.. function:: :axis_y()
+.. function:: :AxisY()
 
     :rtype: :ref:`Axis <axis>`
 
 * Вернуть ось Z
 
-.. function:: :axis_z()
+.. function:: :AxisZ()
 
     :rtype: :ref:`Axis <axis>`
 
 * Вернуть вектор оси X
 
-.. function:: :vector_x()
+.. function:: :VectorX()
 
-    :rtype: :ref:`Vector3d <vector3d>`
+    :rtype: :ref:`Vector3D <vector3d>`
 
 * Вернуть вектор оси Y
 
-.. function:: :vector_y()
+.. function:: :VectorY()
 
-    :rtype: :ref:`Vector3d <vector3d>`
+    :rtype: :ref:`Vector3D <vector3d>`
 
 * Вернуть вектор оси Z
 
-.. function:: :vector_z()
+.. function:: :VectorZ()
 
-    :rtype: :ref:`Vector3d <vector3d>`
+    :rtype: :ref:`Vector3D <vector3d>`

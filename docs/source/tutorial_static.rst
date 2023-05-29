@@ -3,7 +3,7 @@ parameters.json
 
 Перейдём к описанию статической части описания шаблонной категории. Это создание параметров, с помощью которых пользователь будет управлять формой оборудования и точками подключения в диалоге стиля объекта Renga.
 
-1. В рабочей среде редактора создадим папку с названием будущего оборудования ``Wall-mounted VRF indoor unit`` и создадим в ней файл ``parameters.json``. Добавим в файл объекты ``metadata``, ``ports`` и массив ``style_parameters``.
+1. В рабочей среде редактора создадим папку с названием будущего оборудования ``Wall-mounted VRF indoor unit`` и создадим в ней файл ``parameters.json``. Добавим в файл объект ``metadata`` и массивы ``style_parameters``, ``ports``.
 
 .. figure:: _static/Tutorial_step1.png
     :alt: Создание файла parameters
@@ -36,32 +36,32 @@ parameters.json
 
     "style_parameters" : [
             {
-                "name" : "general",
+                "name" : "General",
                 "text" : "Общие",
                 "params" : []
             },
             {
-                "name" : "dimensions",
+                "name" : "Dimensions",
                 "text" : "Габаритные размеры",
                 "params" : []
             },
             {
-                "name" : "water_coolant",
+                "name" : "WaterCoolant",
                 "text" : "Подача жидкости (вход)",
                 "params" : []
             },
             {
-                "name" : "gas_coolant",
+                "name" : "GasCoolant",
                 "text" : "Подача газа (вход)",
                 "params" : []
             },
             {
-                "name" : "drainage",
+                "name" : "Drainage",
                 "text" : "Дренаж (выход)",
                 "params" : []
             },
             {
-                "name" : "electric_connectors",
+                "name" : "ElectricConnectors",
                 "text" : "Вводные электрические линии",
                 "params" : []
             }
@@ -74,7 +74,7 @@ parameters.json
     :linenos:
 
     {
-        "name" : "general",
+        "name" : "General",
         "text" : "Общие",
         "params" : [
             {
@@ -93,7 +93,7 @@ parameters.json
     :linenos:
 
     {
-        "name" : "dimensions",
+        "name" : "Dimensions",
         "text" : "Габаритные размеры",
         "params" : [
             {
@@ -123,7 +123,7 @@ parameters.json
         ]
     }
 
-6. Опишем параметры группы ``water_coolant``. Добавим параметр ``connector_type`` типа :ref:`Enumeration <enumeration>` для указания вида соединения (из списка возможных в Renga). И ещё два параметра, которые будут задавать номинальный диаметр соединения: ``thread_size`` типа :ref:`Enumeration <enumeration>` и ``nominal_diameter`` типа :ref:`Length <length_param>`.
+6. Опишем параметры группы ``WaterCoolant``. Добавим параметр ``connector_type`` типа :ref:`Enumeration <enumeration>` для указания вида соединения (из списка возможных в Renga). И ещё два параметра, которые будут задавать номинальный диаметр соединения: ``thread_size`` типа :ref:`Enumeration <enumeration>` и ``nominal_diameter`` типа :ref:`Length <length_param>`.
 
 .. note:: Далее в скриптах Lua пропишем логику, чтобы в диалоге стиля объекта отображался только один параметр (thread_size или nominal_diameter), в зависимости от того, какой вид соединения выберет пользователь. 
 
@@ -132,22 +132,22 @@ parameters.json
     :linenos:
 
     {
-        "name" : "water_coolant",
+        "name" : "WaterCoolant",
         "text" : "Подача жидкости (вход)",
         "params" : [
             {
                 "name" : "connector_type",
                 "text" : "Вид соединения",
                 "type" : "enumeration",
-                "enum_type" : "connector_type",
-                "default" : "thread"
+                "enum_type" : "ConnectorType",
+                "default" : "Thread"
             },
             {
                 "name" : "thread_size",
                 "text" : "Номинальный диаметр",
                 "type" : "enumeration",
-                "enum_type" : "pipe_thread_size",
-                "default" : "d_0_50"
+                "enum_type" : "PipeThreadSize",
+                "default" : "D0_50"
             },
             {
                 "name" : "nominal_diameter",
@@ -187,7 +187,7 @@ parameters.json
     :linenos:
 
     {
-        "name" : "water_coolant",
+        "name" : "WaterCoolant",
         "text" : "Подача жидкости (вход)",
         "params" : [
             ..
@@ -238,7 +238,7 @@ parameters.json
         ]
     }
 
-7. Следующие две группы параметров ``gas_coolant`` и ``drainage`` также описывают подключение к трубопроводным системам. Поэтому мы можем использовать аналогичные параметры для задания соединения ``connector_type``, ``nominal_diameter``, ``thread_size``, ``connection_side``, ``connection_direction`` и ``port_indentation``. Скопируем их из группы ``water_coolant`` и присвоим характерные значения по-умолчанию ``default``.
+7. Следующие две группы параметров ``GasCoolant`` и ``Drainage`` также описывают подключение к трубопроводным системам. Поэтому мы можем использовать аналогичные параметры для задания соединения ``connector_type``, ``nominal_diameter``, ``thread_size``, ``connection_side``, ``connection_direction`` и ``port_indentation``. Скопируем их из группы ``water_coolant`` и присвоим характерные значения по-умолчанию ``default``.
 
 .. attention:: В параметре ``connector_type`` мы использовали список идентификаторов для создания видов соединения к трубопроводным системам. Для создания видов соединения к вентиляционным системам необходимо использовать ``"enum_type" : "air_connector_type"`` со своим списком вариантов. См. :doc:`идентификаторы системных перечислений </coreenums>`
 
@@ -253,7 +253,7 @@ parameters.json
     :linenos:
 
     {
-        "name" : "electric_connectors",
+        "name" : "ElectricConnectors",
         "text" : "Вводные электрические линии",
         "params" : [
             {
@@ -308,41 +308,54 @@ parameters.json
     :linenos:
 
     {
-        "ports" : {
-            "water_coolant" : {},
-            "gas_coolant" : {},
-            "drainage" : {},
-            "power_supply_line" : {},
-            "control_network_1" : {},
-            "control_network_2" : {}
-        }
+        "ports" : [
+            {
+                "name" : "WaterCoolant"
+            },
+            {
+                "name" : "GasCoolant"
+            },
+            {
+                "name" : "Drainage"
+            },
+            {
+                "name" : "PowerSupplyLine"
+            },
+            {
+                "name" : "ControlNetwork1"
+            },
+            {
+                "name" : "ControlNetwork2"
+            }
+        ]
     }
 
 .. note:: Имя портам даётся уникальное и понятное. Оно является ключом для доступа к его параметрам.
 
-Рассмотрим подробнее на примере порта ``drainage`` для чего нужны параметры порту.
+Рассмотрим подробнее на примере порта ``Drainage`` для чего нужны параметры порту.
 
 .. code-block::
-    :caption: Перечисление атрибутов порта ``drainage``
+    :caption: Перечисление атрибутов порта ``Drainage``
     :linenos:
 
     {
         "ports" : {
             ..
-            "drainage" : {
-                "name" : "Канализация",
-                "flow_direction" : "outlet",
+            {
+                "name" : "Drainage",
+                "text" : "Канализация",
+                "flow_direction" : "Outlet",
                 "system_categories" : [
-                    "domestic_sewage",
-                    "industrial_sewage",
-                    "other_pipe_system"
+                    "DomesticSewage",
+                    "IndustrialSewage",
+                    "OtherPipeSystem"
                 ]
             },
             ..
         }
     }
 
-Параметр ``name`` задает отображаемое имя порта в Renga. Его лучше сопоставить с названиями категорий систем в Renga, чтобы проектировщику было легче ориентироваться при работе во вкладках систем.
+Параметр ``text`` задает отображаемое имя порта в Renga. Его лучше сопоставить с названиями категорий систем в Renga, чтобы проектировщику было легче ориентироваться при работе во вкладках систем.
 
 Пример:|pic2|
 
@@ -364,50 +377,57 @@ parameters.json
 10. Полное описание портов:
 
 .. code-block::
-    :caption: Описание портов в объекте ``ports``
+    :caption: Описание портов в массиве ``ports``
     :linenos:
 
     {
-        "ports" : {
-            "water_coolant" : {
-            "name" : "Жидкостный трубопровод",
-            "flow_direction" : "inlet",
-            "system_categories" : [
-                "other_pipe_system"
-            ]
-        },
-        "gas_coolant" : {
-            "name" : "Фреоновый трубопровод",
-            "flow_direction" : "inlet",
-            "system_categories" : [
-                "other_pipe_system"
-            ]
-        },
-        "drainage" : {
-            "name" : "Канализация",
-            "flow_direction" : "outlet",
-            "system_categories" : [
-                "domestic_sewage",
-                "industrial_sewage",
-                "other_pipe_system"
-            ]
-        },
-        "power_supply_line" : {
-            "name" : "Силовая линия",
-            "system_categories" : [
-                "power_circuit"
-            ]
-        },
-        "control_network_1" : {
-            "name" : "Линия управления 1",
-            "system_categories" : [
-                "other_electrical_system"
-            ]
-        },
-        "control_network_2" : {
-            "name" : "Линия управления 2",
-            "system_categories" : [
-                "other_electrical_system"
-            ]
-        }
+        "ports" : [
+            {
+                "name" : "WaterCoolant",
+                "text" : "Жидкостный трубопровод",
+                "flow_direction" : "Inlet",
+                "system_categories" : [
+                    "OtherPipeSystem"
+                ]
+            },
+            {
+                "name" : "GasCoolant",
+                "text" : "Фреоновый трубопровод",
+                "flow_direction" : "Inlet",
+                "system_categories" : [
+                    "OtherPipeSystem"
+                ]
+            },
+            {
+                "name" : "Drainage",
+                "text" : "Канализация",
+                "flow_direction" : "Outlet",
+                "system_categories" : [
+                    "DomesticSewage",
+                    "IndustrialSewage",
+                    "OtherPipeSystem"
+                ]
+            },
+            {
+                "name" : "PowerSupplyLine",
+                "text" : "Силовая линия",
+                "system_categories" : [
+                    "PowerCircuit"
+                ]
+            },
+            {
+                "name" : "ControlNetwork1",
+                "text" : "Линия управления 1",
+                "system_categories" : [
+                    "OtherElectricalSystem"
+                ]
+            },
+            {
+                "name" : "ControlNetwork2",
+                "text" : "Линия управления 2",
+                "system_categories" : [
+                    "OtherElectricalSystem"
+                ]
+            }
+        ]
     }

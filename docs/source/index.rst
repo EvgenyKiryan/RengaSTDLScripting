@@ -3,14 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Renga Lua Scripting
-===================
+Renga Style Template Scripting
+==============================
 
 .. image:: https://readthedocs.org/projects/rengaluaguide/badge/?version=stable
    :target: https://rengaluaguide.readthedocs.io/ru/stable/?badge=stable
    :alt: Documentation Status
 
-Добро пожаловать в руководство по созданию пользовательских категорий инженерного оборудования в Renga!
+Добро пожаловать в руководство по созданию пользовательских шаблонов стилей инженерного оборудования в Renga!
 
 Содержание
 ----------
@@ -36,6 +36,8 @@ Renga Lua Scripting
 
    packages
 
+   modelgeometry
+
    basetypes
 
    symbolic
@@ -48,12 +50,12 @@ Renga Lua Scripting
 
    auxiliary
 
-Обучающий проект: Создание своего оборудования в Renga
-------------------------------------------------------
+Первый обучающий проект
+-----------------------
 
 .. toctree::
    :maxdepth: 2
-   :caption: Tutorial:
+   :caption: Tutorial: Создание шаблона стиля инженерного оборудования
 
    tutorial_intro
 

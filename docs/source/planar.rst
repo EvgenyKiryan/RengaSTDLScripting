@@ -1,7 +1,7 @@
 Плоская геометрия (класс PlanarGeometry)
 ========================================
 
-Общий класс **PlanarGeometry** не имеет конструктора. Служит для создания условного или символьного графического отображения различного оборудования. В зависимости от нужного поведения на видах (планах, разрезах, аксонометрических видах) порождает несколько видов плоской геометрии (см. **Порождающие функции**).
+Общий класс **PlanarGeometry** не имеет конструктора. Служит для создания условного или символьного уровня детализации стиля. В зависимости от нужного поведения на видах (планах, разрезах, аксонометрических видах) порождает несколько видов плоской геометрии (см. **Порождающие функции**).
 Плоская геометрия является контейнером, вмещающим в себя графические примитивы (из которых будет состоять УГО) таких типов, как:
 
 * :ref:`Двумерные кривые <curve2d>`
@@ -11,15 +11,16 @@
     :caption: Пример 1. Создание плоской геометрии, состоящей из 2-х кривых и одного региона.
     :linenos:
 
-    local geometry = renga.PlanarGeometryPlane()
-    
-    geometry:add_curve(renga.Rectangle(20, 10))
-    geometry:add_curve(renga.Line(renga.Point2d(10, -5),
-                                  renga.Point2d(-10, 5)))
-    geometry:add_hatch_basic(renga.Region({renga.ClosedContourByPoints({renga.Point2d(10, -5),
-                                                                        renga.Point2d(-10, 5),
-                                                                        renga.Point2d(-10, -5)})}))
-    category.geometry.symbol:add_planar_geometry(geometry:set_unscalable(true))
+    local symbolGeometry = ModelGeometry()
+    local planarGeometry = PlanarGeometryPlane()    
+    planarGeometry:AddCurve(Rectangle(20, 10))
+    planarGeometry:AddCurve(Line(Point2d(10, -5),
+                                 Point2d(-10, 5)))
+    planarGeometry:AddHatchBasic(Region({ClosedContourByPoints({Point2d(10, -5),
+                                                                Point2d(-10, 5),
+                                                                Point2d(-10, -5)})}))
+    symbolGeometry:AddPlanarGeometry(planarGeometry:SetUnscalable(true))
+    Style.SetSymbolGeometry(symbolGeometry)
 
 Результат:
 
@@ -34,7 +35,7 @@
 Плоская геометрия, ориентированная по направлению осей
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Наследует положение объекта и направление осей. Статична и всегда повёрнута в одну сторону, которую задаёт метод ``set_placement()``
+Наследует положение объекта и направление осей. Статична и всегда повёрнута в одну сторону, которую задаёт метод ``SetPlacement()``
 
 .. note:: В основном используется в условном отображении оборудования
 
@@ -93,71 +94,71 @@
 
 * Сместить по осям X, Y
 
-.. function:: :shift(d_x, d_y)
+.. function:: :Shift(dX, dY)
 
-    :param d_x: Задает смещение по оси X.
-    :type d_x: Number
-    :param d_y: Задает смещение по оси Y.
-    :type d_y: Number
+    :param dX: Задает смещение по оси X.
+    :type dX: Number
+    :param dY: Задает смещение по оси Y.
+    :type dY: Number
 
 * Повернуть относительно точки
 
-.. function:: :rotate(point, angle)
+.. function:: :Rotate(point, angle)
 
     :param point: Задает точку-центр вращения.
-    :type point: :ref:`Point2d <point2d>`
+    :type point: :ref:`Point2D <point2d>`
     :param angle: Задает угол поворота.
     :type angle: Number
 
 * Масштабировать по двум осям относительно указанной точки
 
-.. function:: :scale(point, x_scale, y_scale)
+.. function:: :Scale(point, scaleX, scaleY)
 
     :param point: Задает точку, относительно которой будет масштабироваться кривая.
-    :type point: :ref:`Point2d <point2d>`
-    :param x_scale: Задает коэффициент масштабирования по оси X.
-    :type x_scale: Number
-    :param y_scale: Задает коэффициент масштабирования по оси Y.
-    :type y_scale: Number
+    :type point: :ref:`Point2D <point2d>`
+    :param scaleX: Задает коэффициент масштабирования по оси X.
+    :type scaleX: Number
+    :param scaleY: Задает коэффициент масштабирования по оси Y.
+    :type scaleY: Number
 
 * Добавить кривую к плоской геометрии
 
-.. function:: :add_curve(curve)
+.. function:: :AddCurve(curve)
 
     :param curve: Задает двухмерную кривую.
-    :type curve: :ref:`Curve2d <curve2d>`
+    :type curve: :ref:`Curve2D <curve2d>`
 
 * Добавить регион к основной штриховке
 
-.. function:: :add_hatch_basic(region)
+.. function:: :AddHatchBasic(region)
 
     :param region: Задает двухмерный регион.
     :type region: :ref:`Region <region>`
 
 * Добавить регион к дополнительной штриховке
 
-.. function:: :add_hatch_extra(region)
+.. function:: :AddHatchExtra(region)
 
     :param region: Задает двухмерный регион.
     :type region: :ref:`Region <region>`
 
 * Задать ЛСК для построения плоской геометрии
 
-.. function:: :set_placement(placement)
+.. function:: :SetPlacement(placement)
 
     :param placement: Задает трёхмерную локальную систему координат.
-    :type placement: :ref:`Placement3d <placement3d>`
+    :type placement: :ref:`Placement3D <placement3d>`
 
 * Задать возможность масштабирования геометрии
 
-.. function:: :set_unscalable(bool)
+.. function:: :SetUnscalable(bool)
 
     :param bool: True - геометрия не масштабируется. False - масштабируется.
     :type bool: Boolean
 
 * Задать приоритет геометрии по оси Z
 
-.. function:: :set_z_index_priority(bool)
+.. function:: :SetZIndexPriority(bool)
 
     :param bool: True - приоритет задан. False - не задан.
     :type bool: Boolean

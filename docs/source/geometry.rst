@@ -22,9 +22,10 @@
     :caption: Пример 1.
     :linenos:
 
-    local solid = renga.Cube(20)
-
-    category.geometry.detailed:add_solid(solid)
+    local detailedGeometry = ModelGeometry()
+    local cubeSolid = Cube(20)
+    detailedGeometry:AddSolid(cubeSolid)
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -53,9 +54,10 @@
     :caption: Пример 2.
     :linenos:
 
-    local solid = renga.Box(40, 15, 20)
-
-    category.geometry.detailed:add_solid(solid)
+    local detailedGeometry = ModelGeometry()
+    local boxSolid = Box(40, 15, 20)
+    detailedGeometry:AddSolid(boxSolid)
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -78,9 +80,10 @@
     :caption: Пример 3.
     :linenos:
 
-    local solid = renga.Sphere(10)
-
-    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    local detailedGeometry = ModelGeometry()
+    local bearingSolid = Sphere(10)
+    detailedGeometry:AddSolid(bearingSolid:HideSmoothEdges())
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -107,9 +110,10 @@
     :caption: Пример 4.
     :linenos:
 
-    local solid = renga.Cylinder(10, 40)
-
-    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    local detailedGeometry = ModelGeometry()
+    local pinSolid = Cylinder(10, 40)
+    detailedGeometry:AddSolid(pinSolid:HideSmoothEdges())
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -136,9 +140,10 @@
     :caption: Пример 5.
     :linenos:
 
-    local solid = renga.Cone(10, 40)
-
-    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    local detailedGeometry = ModelGeometry()
+    local coneSolid = Cone(10, 40)
+    detailedGeometry:AddSolid(coneSolid:HideSmoothEdges())
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -152,12 +157,12 @@
 
 Часть конуса, лежащая между основанием и плоскостью, параллельной основанию и находящейся между вершиной и основанием.
 
-.. function:: ConicalFrustum(bottom_radius, top_radius, height)
+.. function:: ConicalFrustum(bottomRadius, topRadius, height)
 
-    :param bottom_radius: Задает радиус основания усеченного конуса.
-    :type bottom_radius: Number
-    :param top_radius: Задает радиус верха усеченного конуса.
-    :type top_radius: Number    
+    :param bottomRadius: Задает радиус основания усеченного конуса.
+    :type bottomRadius: Number
+    :param topRadius: Задает радиус верха усеченного конуса.
+    :type topRadius: Number    
     :param height: Задает высоту усеченного конуса.
     :type height: Number
     :return: Твердотельная геометрия.
@@ -167,9 +172,10 @@
     :caption: Пример 6.
     :linenos:
 
-    local solid = renga.ConicalFrustum(10, 5, 20)
-
-    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    local detailedGeometry = ModelGeometry()
+    local fillerSolid = ConicalFrustum(10, 5, 20)
+    detailedGeometry:AddSolid(fillerSolid:HideSmoothEdges())
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -183,12 +189,12 @@
 
 Основанием пирамиды является прямоугольник.
 
-.. function:: Pyramid(size_x, size_y, height)
+.. function:: Pyramid(sizeX, sizeY, height)
 
-    :param size_x: Задает размер основания пирамиды по оси X.
-    :type size_x: Number
-    :param size_y: Задает размер основания пирамиды по оси Y.
-    :type size_y: Number    
+    :param sizeX: Задает размер основания пирамиды по оси X.
+    :type sizeX: Number
+    :param sizeY: Задает размер основания пирамиды по оси Y.
+    :type sizeY: Number    
     :param height: Задает высоту пирамиды.
     :type height: Number
     :return: Твердотельная геометрия.
@@ -198,9 +204,10 @@
     :caption: Пример 7.
     :linenos:
 
-    local solid = renga.Pyramid(25, 15, 20)
-
-    category.geometry.detailed:add_solid(solid)
+    local detailedGeometry = ModelGeometry()
+    local baseSolid = Pyramid(25, 15, 20)
+    detailedGeometry:AddSolid(baseSolid)
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -214,10 +221,10 @@
 Тело выдавливания
 ^^^^^^^^^^^^^^^^^
 
-.. function:: Extrusion(contour, height)
+.. function:: ExtrudedSolid(contour, height)
 
     :param contour: Задает плоский контур выдавливания.
-    :type contour: :ref:`Curve2d <curve2d>`   
+    :type contour: :ref:`Curve2D <curve2d>`   
     :param height: Задает высоту тела выдавливания.
     :type height: Number
     :return: Твердотельная геометрия.
@@ -227,23 +234,24 @@
     :caption: Пример 8.
     :linenos:
 
+    local detailedGeometry = ModelGeometry()
     local points = {
-        renga.Point2d(0, 0),
-        renga.Point2d(0, 10),
-        renga.Point2d(10, 10),
-        renga.Point2d(10, 8),
-        renga.Point2d(8, 8),
-        renga.Point2d(8, 6),
-        renga.Point2d(6, 6),
-        renga.Point2d(6, 4),
-        renga.Point2d(4, 4),
-        renga.Point2d(4, 2),
-        renga.Point2d(2, 2),
-        renga.Point2d(2, 0)}
-    local contour = renga.ClosedContourByPoints(points)
-    local solid = renga.Extrusion(contour, 40)
-
-    category.geometry.detailed:add_solid(solid)
+        Point2D(0, 0),
+        Point2D(0, 10),
+        Point2D(10, 10),
+        Point2D(10, 8),
+        Point2D(8, 8),
+        Point2D(8, 6),
+        Point2D(6, 6),
+        Point2D(6, 4),
+        Point2D(4, 4),
+        Point2D(4, 2),
+        Point2D(2, 2),
+        Point2D(2, 0)}
+    local extrusionContour = ClosedContourByPoints(points)
+    local moldingSolid = ExtrudedSolid(extrusionContour, 40)
+    detailedGeometry:AddSolid(moldingSolid)
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -258,7 +266,7 @@
 .. function:: ExtrusionWithThickness(contour, height, thickness)
 
     :param contour: Задает плоский контур выдавливания.
-    :type contour: :ref:`Curve2d <curve2d>`   
+    :type contour: :ref:`Curve2D <curve2d>`   
     :param height: Задает высоту тела выдавливания.
     :type height: Number
     :param thickness: Задает толщину контура выдавливания.
@@ -270,23 +278,24 @@
     :caption: Пример 9.
     :linenos:
 
+    local detailedGeometry = ModelGeometry()
     local points = {
-        renga.Point2d(0, 0),
-        renga.Point2d(0, 10),
-        renga.Point2d(10, 10),
-        renga.Point2d(10, 8),
-        renga.Point2d(8, 8),
-        renga.Point2d(8, 6),
-        renga.Point2d(6, 6),
-        renga.Point2d(6, 4),
-        renga.Point2d(4, 4),
-        renga.Point2d(4, 2),
-        renga.Point2d(2, 2),
-        renga.Point2d(2, 0)}
-    local contour = renga.ClosedContourByPoints(points)
-    local solid = renga.ExtrusionWithThickness(contour, 15, 0.5)
-
-    category.geometry.detailed:add_solid(solid)
+        Point2D(0, 0),
+        Point2D(0, 10),
+        Point2D(10, 10),
+        Point2D(10, 8),
+        Point2D(8, 8),
+        Point2D(8, 6),
+        Point2D(6, 6),
+        Point2D(6, 4),
+        Point2D(4, 4),
+        Point2D(4, 2),
+        Point2D(2, 2),
+        Point2D(2, 0)}
+    local profileContour = ClosedContourByPoints(points)
+    local thinSolid = ExtrusionWithThickness(profileContour, 15, 0.5)
+    detailedGeometry:AddSolid(thinSolid)
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -298,12 +307,12 @@
 Построение тела по плоским сечениям
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. function:: CreateLoftedSolid({profiles}, {placements})
+.. function:: LoftedSolid({profiles}, {placements})
 
     :param {profiles}: Задает таблицу плоских контуров.
-    :type {profiles}: table of :ref:`Curves2d <curve2d>`   
+    :type {profiles}: table of :ref:`Curves2D <curve2d>`   
     :param {placements}: Задает таблицу координатных плоскостей в 3D пространстве.
-    :type {placements}: table of :ref:`Placements3d <placement3d>`
+    :type {placements}: table of :ref:`Placements3D <placement3d>`
     :return: Твердотельная геометрия.
     :rtype: Solid
 
@@ -311,19 +320,20 @@
     :caption: Пример 10.
     :linenos:
 
+    local detailedGeometry = ModelGeometry()
     local profiles = {
-        renga.Rectangle(30, 30),
-        renga.Circle(renga.Point2d(0, 0), 10)}
+        Rectangle(30, 30),
+        Circle(Point2D(0, 0), 10)}
     local placements = {
-        renga.Placement3d(renga.Point3d(0, 0, 0),
-                          renga.Vector3d(1, 0, 0),
-                          renga.Vector3d(0, 1, 0)),
-        renga.Placement3d(renga.Point3d(40, 0, 0),
-                          renga.Vector3d(1, 0, 0),
-                          renga.Vector3d(0, 1, 0))}
-    local solid = renga.CreateLoftedSolid(profiles, placements)
-
-    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
+        Placement3d(Point3D(0, 0, 0),
+                    Vector3D(1, 0, 0),
+                    Vector3D(0, 1, 0)),
+        Placement3d(Point3D(40, 0, 0),
+                    Vector3D(1, 0, 0),
+                    Vector3D(0, 1, 0))}
+    local loftedSolid = LoftedSolid(profiles, placements)
+    detailedGeometry:AddSolid(loftedSolid)
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -335,14 +345,14 @@
 Построение кинематического тела путем движения образующей кривой вдоль направляющей кривой
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. function:: CreateLoftedSolidByProfilesAndPath(start_profile, end_profile, path)
+.. function:: CreateLoftedSolidByProfilesAndPath(startProfile, endProfile, path)
 
-    :param start_profile: Задает плоский контур в начале.
-    :type start_profile: :ref:`Curve2d <curve2d>`   
-    :param end_profile: Задает плоский контур в конце.
-    :type end_profile: :ref:`Curve2d <curve2d>`
+    :param startProfile: Задает плоский контур в начале.
+    :type startProfile: :ref:`Curve2D <curve2d>`   
+    :param endProfile: Задает плоский контур в конце.
+    :type endProfile: :ref:`Curve2D <curve2d>`
     :param path: Задает путь движения в виде трехмерной кривой.
-    :type path: :ref:`Curve3d <curve3d>`
+    :type path: :ref:`Curve3D <curve3d>`
     :return: Твердотельная геометрия.
     :rtype: Solid
 
@@ -350,19 +360,20 @@
     :caption: Пример 11.
     :linenos:
 
-    local start_profile = renga.Rectangle(30, 30)
-    local end_profile = renga.Circle(renga.Point2d(0, 0), 10)
-    local arc_2d = renga.ArcByCenter(renga.Point2d(0, 0),
-                                     renga.Point2d(-30, 0),
-                                     renga.Point2d(0, 30),
-                                     true)
-    local arc_3d = renga.Curve3dByCurveAndPlacement(arc_2d,
-                                                    renga.Placement3d(renga.Point3d(0, 0, 0),
-                                                                      renga.Vector3d(0, -1, 0),
-                                                                      renga.Vector3d(0, 0, 1)))
-    local solid = renga.CreateLoftedSolidByProfilesAndPath(start_profile, end_profile, arc_3d)
-
-    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    local detailedGeometry = ModelGeometry()
+    local startProfile = Rectangle(30, 30)
+    local endProfile = Circle(Point2D(0, 0), 10)
+    local arc2D = ArcByCenter(Point2D(0, 0),
+                              Point2D(-30, 0),
+                              Point2D(0, 30),
+                              true)
+    local arc3D = Curve3dByCurveAndPlacement(arc2D,
+                                             Placement3D(Point3d(0, 0, 0),
+                                                         Vector3d(0, -1, 0),
+                                                         Vector3d(0, 0, 1)))
+    local loftedSolid = CreateLoftedSolidByProfilesAndPath(startProfile, endProfile, arc3D)
+    detailedGeometry:AddSolid(loftedSolid)
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -376,37 +387,38 @@
 
 Вращение плоского замкнутого контура вокруг заданной оси на указанный угол.
 
-.. function:: Revolution(placement, contour, origin, axis, counterClockwiseAngle, ClockwiseAngle)
+.. function:: Revolution(placement, contour, origin, axis, counterClockwiseAngle, clockwiseAngle)
 
     :param placement: Задает координатную плоскость.
-    :type placement: :ref:`Placement3d <placement3d>`
+    :type placement: :ref:`Placement3D <placement3d>`
     :param contour: Задает плоский контур.
-    :type contour: :ref:`Curve2d <curve2d>`
+    :type contour: :ref:`Curve2D <curve2d>`
     :param origin: Задает точку начала оси вращения.
-    :type origin: :ref:`Point3d <point3d>`
+    :type origin: :ref:`Point3D <point3d>`
     :param axis: Задает ориентацию (вектор) оси вращения.
-    :type axis: :ref:`Vector3d <vector3d>`
+    :type axis: :ref:`Vector3D <vector3d>`
     :param counterClockwiseAngle: Задает угол вращения против часовой стрелки.
     :type counterClockwiseAngle: Number
-    :param ClockwiseAngle: Задает угол вращения по часовой стрелке.
-    :type ClockwiseAngle: Number
+    :param clockwiseAngle: Задает угол вращения по часовой стрелке.
+    :type clockwiseAngle: Number
 
 .. code-block:: lua
     :caption: Пример 12.
     :linenos:
 
-    local placement = renga.Placement3d(renga.Point3d(0, 0, 0),
-                                        renga.Vector3d(1, 0, 0),
-                                        renga.Vector3d(0, 1, 0))
-    local contour = renga.Rectangle(6, 15):fillet_nth(3, 3):fillet_nth(5, 3)
-    local solid = renga.Revolution(placement,
-                                   contour,
-                                   renga.Point3d(0, 10, 0),
-                                   renga.Vector3d(0, -0.5, 1),
-                                   0,
-                                   270)
-
-    category.geometry.detailed:add_solid(solid:hide_smooth_edges())
+    local detailedGeometry = ModelGeometry()
+    local placement = Placement3D(Point3D(0, 0, 0),
+                                  Vector3D(1, 0, 0),
+                                  Vector3D(0, 1, 0))
+    local contour = Rectangle(6, 15):FilletNth(3, 3):FilletNth(5, 3)
+    local revolutionSolid = Revolution(placement,
+                                       contour,
+                                       Point3D(0, 10, 0),
+                                       Vector3D(0, -0.5, 1),
+                                       0,
+                                       270)
+    detailedGeometry:AddSolid(loftedSolid:HideSmoothEdges())
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
@@ -422,18 +434,18 @@
 
 * Сместить по осям X, Y, Z
 
-.. function:: :shift(d_x, d_y, d_z)
+.. function:: :Shift(dX, dY, dZ)
 
-    :param d_x: Задает смещение по оси X.
-    :type d_x: Number
-    :param d_y: Задает смещение по оси Y.
-    :type d_y: Number
-    :param d_z: Задает смещение по оси Z.
-    :type d_z: Number
+    :param dX: Задает смещение по оси X.
+    :type dX: Number
+    :param dY: Задает смещение по оси Y.
+    :type dY: Number
+    :param dZ: Задает смещение по оси Z.
+    :type dZ: Number
 
 * Повернуть относительно оси
 
-.. function:: :rotate(axis, angle)
+.. function:: :Rotate(axis, angle)
 
     :param axis: Задает ось вращения.
     :type axis: :ref:`Axis <axis>`
@@ -442,14 +454,14 @@
 
 * Разместить в относительной системе координат
 
-.. function:: :place(placement)
+.. function:: :SetPlacement(placement)
 
     :param placement: Задает координатную систему в 3D пространстве.
-    :type placement: :ref:`Placement3d <placement3d>`
+    :type placement: :ref:`Placement3D <placement3d>`
 
 * Скрытие ребер
 
-.. function:: :hide_smooth_edges()
+.. function:: :HideSmoothEdges()
 
 Операторы
 ---------
@@ -464,11 +476,11 @@
     :caption: Пример 13.
     :linenos:
 
-    local cube = renga.Cube(20)
-    local sphere = renga.Sphere(10)
-
-    category.geometry.detailed:add_solid(
-        cube + sphere:shift(10, 0, 10):hide_smooth_edges())
+    local detailedGeometry = ModelGeometry()
+    local cube = Cube(20)
+    local sphere = Sphere(10)
+    detailedGeometry:AddSolid(cube + sphere:Shift(10, 0, 10):HideSmoothEdges())
+    Style.SetDetailedGeometry(detailedGeometry)   
 
 Результат:
 
@@ -487,11 +499,11 @@
     :caption: Пример 14.
     :linenos:
 
-    local cube = renga.Cube(20)
-    local sphere = renga.Sphere(10)
-
-    category.geometry.detailed:add_solid(
-        cube - sphere:shift(10, 0, 10):hide_smooth_edges())
+    local detailedGeometry = ModelGeometry()
+    local cube = Cube(20)
+    local sphere = Sphere(10)
+    detailedGeometry:AddSolid(cube - sphere:Shift(10, 0, 10):HideSmoothEdges())
+    Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
