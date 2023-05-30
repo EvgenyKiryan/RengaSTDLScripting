@@ -47,11 +47,11 @@
 
 * Вернуть значение координаты X точки
 
-.. function:: :X()
+.. function:: :GetX()
 
 * Вернуть значение координаты Y точки
 
-.. function:: :Y()
+.. function:: :GetY()
 
 Операторы
 ^^^^^^^^^^
@@ -111,15 +111,15 @@
 
 * Вернуть значение координаты X точки
 
-.. function:: :X()
+.. function:: :GetX()
 
 * Вернуть значение координаты Y точки
 
-.. function:: :Y()
+.. function:: :GetY()
 
 * Вернуть значение координаты Z точки
 
-.. function:: :Z()    
+.. function:: :GetZ()    
 
 Операторы
 ^^^^^^^^^^
@@ -161,15 +161,15 @@
 
 * Вернуть соотношение направления по оси X
 
-.. function:: :X()
+.. function:: :GetX()
 
 * Вернуть соотношение направления по оси Y
 
-.. function:: :Y()
+.. function:: :GetY()
 
 * Вернуть соотношение направления по оси Z
 
-.. function:: :Z()
+.. function:: :GetZ()
 
 Операторы
 ^^^^^^^^^^
@@ -199,17 +199,17 @@
 
 Альтернативные конструкторы:
 
-.. function:: AxisX()
+.. function:: XAxis()
 
     :return: Ось X
     :rtype: :ref:`Axis <axis>`
 
-.. function:: AxisY()
+.. function:: YAxis()
 
     :return: Ось Y
     :rtype: :ref:`Axis <axis>`
 
-.. function:: AxisZ()
+.. function:: ZAxis()
 
     :return: Ось Z
     :rtype: :ref:`Axis <axis>`    
@@ -303,19 +303,19 @@
 
 * Вернуть ось X
 
-.. function:: :AxisX()
+.. function:: :XAxis()
 
     :rtype: :ref:`Axis <axis>`
 
 * Вернуть ось Y
 
-.. function:: :AxisY()
+.. function:: :YAxis()
 
     :rtype: :ref:`Axis <axis>`
 
 * Вернуть ось Z
 
-.. function:: :AxisZ()
+.. function:: :ZAxis()
 
     :rtype: :ref:`Axis <axis>`
 

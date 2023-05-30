@@ -123,11 +123,11 @@ List
 * ``items`` — список вариантов.
 
 .. code-block::
-    :caption: Пример 2. Описание параметра ``bodyShape``
+    :caption: Пример 2. Описание параметра ``body_shape``
     :linenos:
 
     {
-        "name" : "bodyShape",
+        "name" : "body_shape",
         "text" : "Форма корпуса",
         "type" : "list",
         "default" : "volute",
@@ -171,11 +171,11 @@ Enumeration
 * ``default`` — значение по-умолчанию
 
 .. code-block::
-    :caption: Пример 3. Описание параметра ``connectorType``
+    :caption: Пример 3. Описание параметра ``connector_type``
     :linenos:
 
     {
-        "name" : "connectorType",
+        "name" : "connector_type",
         "text" : "Вид соединения",
         "type" : "enumeration",
         "enum_type" : "AirConnectorType",
@@ -204,11 +204,11 @@ Length
 * ``max`` — максимально возможное значение
 
 .. code-block::
-    :caption: Пример 4. Описание параметра ``nominalDiameter``
+    :caption: Пример 4. Описание параметра ``nominal_diameter``
     :linenos:
 
     {
-        "name" : "nominalDiameter",
+        "name" : "nominal_diameter",
         "text" : "Номинальный диаметр",
         "type" : "length",
         "default" : 225,
@@ -241,11 +241,11 @@ Angle
 * ``max`` — максимально возможное значение
 
 .. code-block::
-    :caption: Пример 5. Описание параметра ``angleBetweenInletAndBody``
+    :caption: Пример 5. Описание параметра ``angle_between_inlet_and_body``
     :linenos:
 
     {
-        "name" : "angleBetweenInletAndBody",
+        "name" : "angle_between_inlet_and_body",
         "text" : "Угол между входом и корпусом",
         "type" : "angle",
         "default" : 135,
@@ -271,11 +271,11 @@ Boolean
 * ``default`` — значение по-умолчанию
 
 .. code-block::
-    :caption: Пример 5. Описание параметра ``isMounted``
+    :caption: Пример 5. Описание параметра ``is_mounted``
     :linenos:
 
     {
-        "name" : "isMounted",
+        "name" : "is_mounted",
         "text" : "Навесное",
         "type" : "boolean",
         "default" : false
@@ -347,7 +347,7 @@ String
         ..
         "ports" : [
             {
-                "name" : "ColdWater",
+                "name" : "cold_water",
                 "text" : "Бытовое холодное водоснабжение",
                 "flow_direction" : "Inlet"
                 "system_categories" : [
@@ -355,7 +355,7 @@ String
                 ]
             },
             {
-                "name" : "HotWater",
+                "name" : "hot_water",
                 "text" : "Бытовое горячее водоснабжение",
                 "flow_direction" : "Inlet"
                 "system_categories" : [
@@ -363,7 +363,7 @@ String
                  ]
             },
             {
-                "name" : "Sewage",
+                "name" : "sewage",
                 "text" : "Канализация",
                 "flow_direction" : "Outlet"
                 "system_categories" : [

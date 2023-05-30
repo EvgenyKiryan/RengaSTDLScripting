@@ -107,20 +107,22 @@ Style Template API
 Задание видимости параметра в диалоге стиля объекта
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. function:: SetParamVisible(parameter, bool)
+.. function:: SetParamVisible(groupName, parameterName, bool)
 
-    :param parameter: Задает идентификатор (имя) :doc:`параметра <../createparams>`.
-    :type parameter: String
+    :param groupName: Задает идентификатор (имя) :doc:`группы параметров <../createparams>`.
+    :type groupName: String
+    :param parameterName: Задает идентификатор (имя) :doc:`параметра <../createparams>`.
+    :type parameterName: String
     :param bool: Задает видимость параметра. True - видимый, False - невидимый
     :type bool: Boolean
 
 .. note:: Имена параметров берутся из JSON
 
 .. code-block:: lua
-    :caption: Пример 6. Создание видимости параметра ``bodyWidth`` группы параметров ``Dimensions`` во вкладке "Параметры" окна стиля объекта:
+    :caption: Пример 6. Создание видимости параметра ``body_width`` группы параметров ``Dimensions`` во вкладке "Параметры" окна стиля объекта:
     :linenos:
 
-    Style.SetParamVisible(Style.Parameters.Dimensions.bodyWidth, true)
+    Style.SetParamVisible(Dimensions, body_width, true)
 
 Задание видимости группы параметров в диалоге стиля объекта
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
