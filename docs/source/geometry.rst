@@ -345,7 +345,7 @@
 Построение кинематического тела путем движения образующей кривой вдоль направляющей кривой
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. function:: CreateLoftedSolidByProfilesAndPath(startProfile, endProfile, path)
+.. function:: LoftedSolidByProfilesAndPath(startProfile, endProfile, path)
 
     :param startProfile: Задает плоский контур в начале.
     :type startProfile: :ref:`Curve2D <curve2d>`   
@@ -371,13 +371,13 @@
                                              Placement3D(Point3d(0, 0, 0),
                                                          Vector3d(0, -1, 0),
                                                          Vector3d(0, 0, 1)))
-    local loftedSolid = CreateLoftedSolidByProfilesAndPath(startProfile, endProfile, arc3D)
+    local loftedSolid = LoftedSolidByProfilesAndPath(startProfile, endProfile, arc3D)
     detailedGeometry:AddSolid(loftedSolid)
     Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
 
-.. image:: _static/CreateLoftedSolidByProfilesAndPath.png
+.. image:: _static/LoftedSolidByProfilesAndPath.png
     :height: 230 px
     :width: 400 px
     :align: center
