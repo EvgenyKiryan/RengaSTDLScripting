@@ -227,7 +227,7 @@
 
 * Вернуть точку начала оси
 
-.. function:: :Origin()
+.. function:: :GetOrigin()
 
     :rtype: :ref:`Point3D <point3d>`
 
@@ -296,7 +296,7 @@
 
 * Вернуть начало ЛСК
 
-.. function:: :Origin()
+.. function:: :GetOrigin()
 
     :return: Начало ЛСК
     :rtype: :ref:`Point3D <point3d>`

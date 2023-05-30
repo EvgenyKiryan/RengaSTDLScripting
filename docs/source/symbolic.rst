@@ -219,37 +219,37 @@
 
 .. function:: :FilletNth(segmentIndex, radius)
 
-    :param segmentIndex: Задает индекс (порядковый номер) сегмента (вершины?) кривой.
+    :param segmentIndex: Задает индекс (порядковый номер) вершины кривой.
     :type segmentIndex: Number
     :param radius: Задает радиус скругления.
     :type radius: Number
 
 * Обрезать кривую по двум точкам
 
-.. function:: :Cut(beginPoint, endPoint)
+.. function:: :Cut(startPoint, endPoint)
 
-    :param beginPoint: Задает первую точку.
-    :type beginPoint: :ref:`Point2D <point2d>`
+    :param startPoint: Задает первую точку.
+    :type startPoint: :ref:`Point2D <point2d>`
     :param endPoint: Задает вторую точку.
     :type endPoint: :ref:`Point2D <point2d>`
 
 * Вернуть начальную точку кривой
 
-.. function:: :BeginPoint()
+.. function:: :GetStartPoint()
 
     :return: Двухмерная точка
     :rtype: :ref:`Point2D <point2d>`
 
 * Вернуть конечную точку кривой
 
-.. function:: :EndPoint()
+.. function:: :GetEndPoint()
 
     :return: Двухмерная точка
     :rtype: :ref:`Point2D <point2d>`
 
 * Вернуть ближайшую точку до соседней кривой
 
-.. function:: :NearestPointFor(otherCurve)
+.. function:: :GetClosestPointTo(otherCurve)
 
     :param otherCurve: Задает другую кривую.
     :type otherCurve: :ref:`Curve2D <curve2d>`
@@ -497,7 +497,7 @@
 
 * Вернуть начальную точку кривой
 
-.. function:: :BeginPoint()
+.. function:: :GetStartPoint()
 
     :return: Трёхмерная точка.
     :rtype: :ref:`Point3D <point3d>`
@@ -505,7 +505,7 @@
 
 * Вернуть конечную точку кривой
 
-.. function:: :EndPoint()
+.. function:: :GetEndPoint()
 
     :return: Трёхмерная точка.
     :rtype: :ref:`Point3D <point3d>`
