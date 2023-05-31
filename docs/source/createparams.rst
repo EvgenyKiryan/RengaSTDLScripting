@@ -92,7 +92,7 @@ Link
     Параметр "Материал" указывается в группе "Общие"
 
 .. code-block::
-    :caption: Пример 1. Описание параметра `material`
+    :caption: Пример 1. Описание параметра ``material``
     :linenos:
 
     {
@@ -159,8 +159,8 @@ Enumeration
 
 Параметры типа Enumeration используются для указания:
 
-- Вида соединения точек подключения (для трубопроводного оборудования :ref:`connector_type <pipe_type>`, для вентиляционного оборудования :ref:`air_connector_type <air_type>`)
-- Диаметра резьбы (в случае резьбового соединения труб :ref:`pipe_thread_size <thread_size>`)
+- Вида соединения точек подключения (для трубопроводного оборудования :ref:`PipeConnectorType <pipe_type>`, для вентиляционного оборудования :ref:`AirConnectorType <air_type>`)
+- Диаметра резьбы (в случае резьбового соединения труб :ref:`PipeThreadSize <thread_size>`)
 
 Для определения таких параметров используются следующие атрибуты:
 
@@ -347,7 +347,7 @@ String
         ..
         "ports" : [
             {
-                "name" : "cold_water",
+                "name" : "ColdWater",
                 "text" : "Бытовое холодное водоснабжение",
                 "flow_direction" : "Inlet"
                 "system_categories" : [
@@ -355,7 +355,7 @@ String
                 ]
             },
             {
-                "name" : "hot_water",
+                "name" : "HotWater",
                 "text" : "Бытовое горячее водоснабжение",
                 "flow_direction" : "Inlet"
                 "system_categories" : [
@@ -363,7 +363,7 @@ String
                  ]
             },
             {
-                "name" : "sewage",
+                "name" : "Sewage",
                 "text" : "Канализация",
                 "flow_direction" : "Outlet"
                 "system_categories" : [
