@@ -76,10 +76,10 @@
 
 Параметры можно создавать различных типов. В зависимости от используемого типа они по-разному отображаются во вкладке "Параметры" диалога стиля объекта.
 
-.. _link_param:
+.. _id_param:
 
-Link
-""""
+ID
+""
 Используется для указания материала объекта. Задается с помощью следующих атрибутов:
 
 * ``name`` — имя параметра,
@@ -98,7 +98,7 @@ Link
     {
         "name" : "material",
         "text" : "Материал",
-        "type" : "link",
+        "type" : "id",
         "entity_type_id" : "0abcb18f-0aaf-4509-bf89-5c5fad9d5d8b"
     }
 
@@ -107,14 +107,14 @@ Link
 .. image:: _static/material_param.png
     :align: center
 
-.. _list:
+.. _userenum:
 
-List
-""""
+UserEnum
+""""""""
 
 Указывается при задании возможных вариантов исполнения объекта.
 
-Для задания параметра типа List используются следующие атрибуты:
+Для задания параметра типа UserEnum используются следующие атрибуты:
 
 * ``name`` — имя параметра,
 * ``text`` — отображаемое имя параметра в диалоге стиля Renga,
@@ -129,7 +129,7 @@ List
     {
         "name" : "body_shape",
         "text" : "Форма корпуса",
-        "type" : "list",
+        "type" : "userenum",
         "default" : "volute",
         "items" : [
             {
@@ -152,12 +152,12 @@ List
 .. image:: _static/list_param.png
     :align: center
 
-.. _enumeration:
+.. _coreenum:
 
-Enumeration
-"""""""""""
+CoreEnum
+""""""""
 
-Параметры типа Enumeration используются для указания:
+Параметры типа CoreEnum используются для указания:
 
 - Вида соединения точек подключения (для трубопроводного оборудования :ref:`PipeConnectorType <pipe_type>`, для вентиляционного оборудования :ref:`AirConnectorType <air_type>`)
 - Диаметра резьбы (в случае резьбового соединения труб :ref:`PipeThreadSize <thread_size>`)
@@ -177,7 +177,7 @@ Enumeration
     {
         "name" : "connector_type",
         "text" : "Вид соединения",
-        "type" : "enumeration",
+        "type" : "coreenum",
         "enum_type" : "AirConnectorType",
         "default" : "DriveSlip"
     }

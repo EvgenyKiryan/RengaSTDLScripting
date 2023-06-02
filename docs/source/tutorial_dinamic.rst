@@ -44,7 +44,7 @@ main.lua
 
     Профиль корпуса оборудования
 
-3. Далее создадим тело выдавливания :ref:`Extrusion <extrusion>` на длину ``length``, разместим его в своей локальной системе координат ``placement`` с помощью метода ``SetPlacement`` и добавим полученное тело в модельную геометрию ``detailedGeometry`` с помощью метода ``AddSolid``.
+3. Далее создадим тело выдавливания :ref:`ExtrudedSolid <extrusion>` на длину ``length``, разместим его в своей локальной системе координат ``placement`` с помощью метода ``SetPlacement`` и добавим полученное тело в модельную геометрию ``detailedGeometry`` с помощью метода ``AddSolid``.
 
 .. code-block:: lua
     :caption: Добавление тела в модельную геометрию ``detailedGeometry``.
@@ -54,8 +54,9 @@ main.lua
         Point3D(0, 0, 0),
         Vector3D(-1, 0, 0),
         Vector3D(0, -1, 0))
+    local params = ExtrusionValues(length, 0)
 
-    local vrfSolid = Extrusion(makeProfile(), length)
+    local vrfSolid = Extrusion(makeProfile(), Vector3D(0, 0, 1), params)
         :SetPlacement(placement)
         :Shift(length / 2, width / 2, 0)
 

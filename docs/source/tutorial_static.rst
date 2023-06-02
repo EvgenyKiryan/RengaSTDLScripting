@@ -67,7 +67,7 @@ parameters.json
             }
         ]
 
-4. Добавим в группу "Общие" параметр "Материал" типа :ref:`Link <link_param>` для задания пользователем материала оборудования.
+4. Добавим в группу "Общие" параметр "Материал" типа :ref:`ID <id_param>` для задания пользователем материала оборудования.
 
 .. code-block::
     :caption: Добавление в группу "Общие" параметра ``material``
@@ -80,7 +80,7 @@ parameters.json
             {
                 "name" : "material",
                 "text" : "Материал",
-                "type" : "link",
+                "type" : "id",
                 "entity_type_id" : "0abcb18f-0aaf-4509-bf89-5c5fad9d5d8b"
             }
         ]
@@ -123,7 +123,7 @@ parameters.json
         ]
     }
 
-6. Опишем параметры группы ``WaterCoolant``. Добавим параметр ``connector_type`` типа :ref:`Enumeration <enumeration>` для указания вида соединения (из списка возможных в Renga). И ещё два параметра, которые будут задавать номинальный диаметр соединения: ``thread_size`` типа :ref:`Enumeration <enumeration>` и ``nominal_diameter`` типа :ref:`Length <length_param>`.
+6. Опишем параметры группы ``WaterCoolant``. Добавим параметр ``connector_type`` типа :ref:`CoreEnum <coreenum>` для указания вида соединения (из списка возможных в Renga). И ещё два параметра, которые будут задавать номинальный диаметр соединения: ``thread_size`` типа :ref:`CoreEnum <coreenum>` и ``nominal_diameter`` типа :ref:`Length <length_param>`.
 
 .. note:: Далее в скриптах Lua пропишем логику, чтобы в диалоге стиля объекта отображался только один параметр (thread_size или nominal_diameter), в зависимости от того, какой вид соединения выберет пользователь. 
 
@@ -138,14 +138,14 @@ parameters.json
             {
                 "name" : "connector_type",
                 "text" : "Вид соединения",
-                "type" : "enumeration",
+                "type" : "coreenum",
                 "enum_type" : "ConnectorType",
                 "default" : "Thread"
             },
             {
                 "name" : "thread_size",
                 "text" : "Номинальный диаметр",
-                "type" : "enumeration",
+                "type" : "coreenum",
                 "enum_type" : "PipeThreadSize",
                 "default" : "D0_50"
             },
@@ -180,7 +180,7 @@ parameters.json
 
 Как правило, патрубки, соединяющие трубопроводы с оборудованием, располагаются в корпусе блока. Мы их моделировать не будем, но возможность управлять ориентацией и расположением портов добавим, для того, чтобы трубопроводы могли "подойти" к корпусу с нужной стороны.
 
-Добавим ещё три параметра. Параметр ``connection_side`` типа :ref:`List <list>` будет состоять из вариантов ``["Слева", "Справа"]``. Параметр ``connection_direction`` типа :ref:`List <list>` будет состоять из вариантов ``["Сбоку", "Сзади", "Снизу"]``. А параметр ``port_indentation`` будет задавать отступ точек подключения от задней стенки блока.
+Добавим ещё три параметра. Параметр ``connection_side`` типа :ref:`UserEnum <userenum>` будет состоять из вариантов ``["Слева", "Справа"]``. Параметр ``connection_direction`` типа :ref:`UserEnum <userenum>` будет состоять из вариантов ``["Сбоку", "Сзади", "Снизу"]``. А параметр ``port_indentation`` будет задавать отступ точек подключения от задней стенки блока.
 
 .. code-block::
     :caption: Добавление в группу "Подача жидкости (вход)" параметров ``connection_side``, ``connection_direction`` и ``port_indentation``
@@ -194,7 +194,7 @@ parameters.json
             {
                 "name" : "connection_side",
                 "text" : "Сторона подключения",
-                "type" : "list",
+                "type" : "userenum",
                 "default" : "right",
                 "items" : [
                     {
@@ -210,7 +210,7 @@ parameters.json
             {
                 "name" : "connection_direction",
                 "text" : "Направление подключения",
-                "type" : "list",
+                "type" : "userenum",
                 "default" : "side",
                 "items" : [
                     {
@@ -244,7 +244,7 @@ parameters.json
 
 8. Перейдём к описанию параметров соединения с электрическими системами группы ``electric_connectors``. В описании оборудования мы определили, что будет 3 точки подключения (к силовой сети, сети управления/связи и проводному пульту управления). Добавим в статической части характерные параметры для этих точек подключения: расположение ``port_location`` и расстояние между ними ``distance_between_ports``, ``port_indentation``.
 
-Параметр ``port_location`` типа :ref:`List <list>` будет состоять из вариантов ``["Слева", "Справа"]``.
+Параметр ``port_location`` типа :ref:`UserEnum <userenum>` будет состоять из вариантов ``["Слева", "Справа"]``.
 
 Направление электрических портов будет фиксированным — назад. Параметры для управления направлением добавлять не будем.
 
@@ -259,7 +259,7 @@ parameters.json
             {
                 "name" : "port_location",
                 "text" : "Расположение точек подключения",
-                "type" : "list",
+                "type" : "userenum",
                 "default" : "right",
                 "items" : [
                     {

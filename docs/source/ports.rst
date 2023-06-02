@@ -43,7 +43,7 @@
     :param args: Перечисление параметров.
     :type args: Имена параметров, указанных в JSON
 
-.. note:: См. Создание параметра — тип параметра :ref:`Enumeration <enumeration>`
+.. note:: См. Создание параметра — тип параметра :ref:`CoreEnum <coreenum>`
 
 .. code-block:: lua
     :caption: Пример 2. Создание параметров ``connector_type`` и ``nominal_diameter`` порта ``ColdWater`` трубопроводной системы.

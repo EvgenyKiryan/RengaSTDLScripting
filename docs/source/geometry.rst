@@ -6,40 +6,12 @@
 Порождающие функции
 -------------------
 
-Куб
-^^^
-
-Правильный многогранник, каждая грань которого представляет собой квадрат.
-
-.. function:: Cube(size)
-
-    :param size: Задает размер грани куба.
-    :type size: Number
-    :return: Твердотельная геометрия.
-    :rtype: Solid
-
-.. code-block:: lua
-    :caption: Пример 1.
-    :linenos:
-
-    local detailedGeometry = ModelGeometry()
-    local cubeSolid = Cube(20)
-    detailedGeometry:AddSolid(cubeSolid)
-    Style.SetDetailedGeometry(detailedGeometry)
-
-Результат:
-
-.. image:: _static/Cube.png
-    :height: 230 px
-    :width: 400 px
-    :align: center
-
 Параллелепипед
 ^^^^^^^^^^^^^^
 
 Четырехугольная призма, все грани которой являются прямоугольниками (прямоугольный параллелепипед).
 
-.. function:: Box(length, width, height)
+.. function:: Block(length, width, height)
 
     :param length: Задает длину параллелепипеда.
     :type length: Number
@@ -51,11 +23,27 @@
     :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 2.
+    :caption: Пример 1. Создание куба.
     :linenos:
 
     local detailedGeometry = ModelGeometry()
-    local boxSolid = Box(40, 15, 20)
+    local cubeSolid = Block(20, 20, 20)
+    detailedGeometry:AddSolid(cubeSolid)
+    Style.SetDetailedGeometry(detailedGeometry)
+
+Результат:
+
+.. image:: _static/Cube.png
+    :height: 230 px
+    :width: 400 px
+    :align: center
+
+.. code-block:: lua
+    :caption: Пример 2. Создание параллелепипеда.
+    :linenos:
+
+    local detailedGeometry = ModelGeometry()
+    local boxSolid = Block(40, 15, 20)
     detailedGeometry:AddSolid(boxSolid)
     Style.SetDetailedGeometry(detailedGeometry)
 
@@ -221,17 +209,40 @@
 Тело выдавливания
 ^^^^^^^^^^^^^^^^^
 
-.. function:: ExtrudedSolid(contour, height)
+.. function:: ExtrudedSolid(contour, direction, params)
 
     :param contour: Задает плоский контур выдавливания.
     :type contour: :ref:`Curve2D <curve2d>`   
-    :param height: Задает высоту тела выдавливания.
-    :type height: Number
+    :param direction: Задает направление выдавливания.
+    :type direction: :ref:`Vector3D <vector3d>`
+    :param params: Задает дополнительные параметры построения.
+    :type params: :ref:`ExtrusionValues <extrusionval>`
     :return: Твердотельная геометрия.
     :rtype: Solid
 
+    .. _extrusionval:
+
+    Дополнительные параметры построения
+    """""""""""""""""""""""""""""""""""
+
+    Конструктор:
+
+    .. function:: ExtrusionValues(forwardDepth, backwardDepth)
+
+        :param forwardDepth: Задает глубину выдавливания в прямом направлении.
+        :type forwardDepth: Number
+        :param backwardDepth: Задает глубину выдавливания в обратном направлении.
+        :type backwardDepth: Number
+
+        :Поля:            
+            * **thickness1** (*Number*) — Задает отступ наружу от образующей кривой (по умолчанию 0)
+            * **thickness2** (*Number*) — Задает отступ внутрь от образующей кривой (по умолчанию 0)
+            * **forwardAngle** (*Number*) — Задает угол наклона при выдавливании в прямом направлении (по умолчанию 0)
+            * **backwardAngle** (*Number*) — Задает угол наклона при выдавливании в обратном направлении (по умолчанию 0)
+        
+
 .. code-block:: lua
-    :caption: Пример 8.
+    :caption: Пример 8. Построение полнотелого тела, путем задания контура и направления выдавливания - вертикально вверх.
     :linenos:
 
     local detailedGeometry = ModelGeometry()
@@ -249,7 +260,10 @@
         Point2D(2, 2),
         Point2D(2, 0)}
     local extrusionContour = ClosedContourByPoints(points)
-    local moldingSolid = ExtrudedSolid(extrusionContour, 40)
+    local params = ExtrusionValues(40, 0)   -- глубина выдавливания в прямом направлении = 40
+    local moldingSolid = ExtrudedSolid(extrusionContour,
+                                       Vector3D(0, 0, 1),
+                                       params)
     detailedGeometry:AddSolid(moldingSolid)
     Style.SetDetailedGeometry(detailedGeometry)
 
@@ -260,22 +274,9 @@
     :width: 400 px
     :align: center
 
-Тело выдавливания с толщиной
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. function:: ExtrusionWithThickness(contour, height, thickness)
-
-    :param contour: Задает плоский контур выдавливания.
-    :type contour: :ref:`Curve2D <curve2d>`   
-    :param height: Задает высоту тела выдавливания.
-    :type height: Number
-    :param thickness: Задает толщину контура выдавливания.
-    :type thickness: Number
-    :return: Твердотельная геометрия.
-    :rtype: Solid
 
 .. code-block:: lua
-    :caption: Пример 9.
+    :caption: Пример 9. Построение тонкостенного тела, путем задания контура и направления выдавливания - вертикально вверх.
     :linenos:
 
     local detailedGeometry = ModelGeometry()
@@ -293,7 +294,11 @@
         Point2D(2, 2),
         Point2D(2, 0)}
     local profileContour = ClosedContourByPoints(points)
-    local thinSolid = ExtrusionWithThickness(profileContour, 15, 0.5)
+    local params = ExtrusionValues(15, 0)   -- глубина выдавливания в прямом направлении = 15
+    params.thickness1 = params.thickness2 = 0.5 -- толщина отступа наружу и внутрь относительно заданного контура = 0.5
+    local thinSolid = ExtrudedSolid(profileContour,
+                                    Vector3D(0, 0, 1),
+                                    params)
     detailedGeometry:AddSolid(thinSolid)
     Style.SetDetailedGeometry(detailedGeometry)
 
@@ -387,16 +392,16 @@
 
 Вращение плоского замкнутого контура вокруг заданной оси на указанный угол.
 
-.. function:: Revolution(placement, contour, origin, axis, counterClockwiseAngle, clockwiseAngle)
+.. function:: Revolution(placement, contour, origin, vector, counterClockwiseAngle, clockwiseAngle)
 
     :param placement: Задает координатную плоскость.
     :type placement: :ref:`Placement3D <placement3d>`
     :param contour: Задает плоский контур.
     :type contour: :ref:`Curve2D <curve2d>`
-    :param origin: Задает точку начала оси вращения.
+    :param origin: Задает точку начала вектора вращения.
     :type origin: :ref:`Point3D <point3d>`
-    :param axis: Задает ориентацию (вектор) оси вращения.
-    :type axis: :ref:`Vector3D <vector3d>`
+    :param vector: Задает вектор оси вращения.
+    :type vector: :ref:`Vector3D <vector3d>`
     :param counterClockwiseAngle: Задает угол вращения против часовой стрелки.
     :type counterClockwiseAngle: Number
     :param clockwiseAngle: Задает угол вращения по часовой стрелке.
