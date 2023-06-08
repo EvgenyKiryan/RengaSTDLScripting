@@ -1,5 +1,5 @@
-Style Template API
-==================
+Lua-интерфейс Renga
+===================
 
 Скрипты, описывающие геометрическое представление шаблона стиля, расположение портов и поведение параметров из ``parameters.json``, создаются в файле ``main.lua``. Описанию встроенных функций, взаимодействующих с Renga, посвященна данная часть руководства.
 
@@ -65,7 +65,7 @@ Style Template API
 Создание детального отображения объекта стиля
 """""""""""""""""""""""""""""""""""""""""""""
 
-.. function:: SetDetailedGeometry(detailedGeometry)
+.. lua:function:: SetDetailedGeometry(detailedGeometry)
 
     :param detailedGeometry: Задает :doc:`модельную геометрию <../modelgeometry>`.
     :type detailedGeometry: ModelGeometry
@@ -79,7 +79,7 @@ Style Template API
 Создание условного отображения объекта стиля
 """"""""""""""""""""""""""""""""""""""""""""
 
-.. function:: SetSymbolicGeometry(symbolicGeometry)
+.. lua:function:: SetSymbolicGeometry(symbolicGeometry)
 
     :param symbolicGeometry: Задает :doc:`модельную геометрию <../modelgeometry>`.
     :type detailedGeometry: ModelGeometry
@@ -93,7 +93,7 @@ Style Template API
 Создание символьного отображения объекта стиля
 """"""""""""""""""""""""""""""""""""""""""""""
 
-.. function:: SetSymbolGeometry(symbolGeometry)
+.. lua:function:: SetSymbolGeometry(symbolGeometry)
 
     :param symbolGeometry: Задает :doc:`модельную геометрию <../modelgeometry>`.
     :type detailedGeometry: ModelGeometry
@@ -107,7 +107,7 @@ Style Template API
 Задание видимости параметра в диалоге стиля объекта
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. function:: SetParamVisible(groupName, parameterName, bool)
+.. lua:function:: SetParamVisible(groupName, parameterName, bool)
 
     :param groupName: Задает идентификатор (имя) :doc:`группы параметров <../createparams>`.
     :type groupName: String
@@ -127,7 +127,7 @@ Style Template API
 Задание видимости группы параметров в диалоге стиля объекта
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. function:: SetGroupVisible(groupName, bool)
+.. lua:function:: SetGroupVisible(groupName, bool)
 
     :param groupName: Задает идентификатор (имя) :doc:`группы параметров <../createparams>`.
     :type groupName: String
