@@ -16,6 +16,7 @@ release = '1.0'
 
 extensions = [
     'sphinx.ext.duration',
+    'sphinxcontrib.luadomain',
 ]
 
 templates_path = ['_templates']
@@ -28,10 +29,6 @@ language = 'ru'
 
 html_static_path = ['_static']
 
-# import sphinx_redactor_theme
-# html_theme = 'sphinx_redactor_theme'
-# html_theme_path = [sphinx_redactor_theme.get_html_theme_path()]
-
 html_theme = 'furo'
 
 # These paths are either relative to html_static_path
@@ -41,5 +38,5 @@ html_css_files = [
     'css/custom.css',
 ]
 
-html_logo = "_static/logo.png"
+html_logo = '_static/logo.png'
 html_title = f"Руководство {project} {release}"
