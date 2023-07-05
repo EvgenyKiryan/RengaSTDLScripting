@@ -10,7 +10,7 @@
 
 Конструктор класса:
 
-.. function:: Point2D(x, y)
+.. lua:function:: Point2D(x, y)
 
     :param x: Задает координату по оси X.
     :type x: Number
@@ -22,7 +22,7 @@
 
 * Сместить по осям X, Y
 
-.. function:: :Shift(dX, dY)
+.. lua:method:: :ShiftTransform(dX, dY)
 
     :param dX: Задает смещение по оси X.
     :type dX: Number
@@ -31,7 +31,7 @@
 
 * Повернуть на угол
 
-.. function:: :Rotate(point, angle)
+.. lua:method:: :RotateTransform(point, angle)
 
     :param point: Задает точку центра вращения.
     :type point: :ref:`Point2D <point2d>`
@@ -40,18 +40,18 @@
 
 * Вернуть копию объекта
 
-.. function:: :Clone()
+.. lua:method:: :Clone()
 
     :return: Двухмерная точка
     :rtype: :ref:`Point2D <point2d>`
 
 * Вернуть значение координаты X точки
 
-.. function:: :GetX()
+.. lua:method:: :GetX()
 
 * Вернуть значение координаты Y точки
 
-.. function:: :GetY()
+.. lua:method:: :GetY()
 
 Операторы
 ^^^^^^^^^^
@@ -70,7 +70,7 @@
 
 Конструктор класса:
 
-.. function:: Point3D(x, y, z)
+.. lua:function:: Point3D(x, y, z)
 
     :param x: Задает координату по оси X.
     :type x: Number
@@ -84,7 +84,7 @@
 
 * Сместить по осям X, Y, Z
 
-.. function:: :Shift(dX, dY, dZ)
+.. lua:method:: :ShiftTransform(dX, dY, dZ)
 
     :param dX: Задает смещение по оси X.
     :type dX: Number
@@ -95,48 +95,41 @@
 
 * Повернуть на угол
 
-.. function:: :Rotate(axis, angle)
+.. lua:method:: :RotateTransform(axis, angle)
 
     :param axis: Задает ось вращения.
-    :type axis: :ref:`Vector3D <vector3d>`
+    :type axis: :ref:`Axis3D <axis3d>`
     :param angle: Задает угол поворота.
     :type angle: Number
 
 * Вернуть копию объекта
 
-.. function:: :Clone()
+.. lua:method:: :Clone()
 
     :return: Копия точки
     :rtype: :ref:`Point3D <point3d>`  
 
 * Вернуть значение координаты X точки
 
-.. function:: :GetX()
+.. lua:method:: :GetX()
 
 * Вернуть значение координаты Y точки
 
-.. function:: :GetY()
+.. lua:method:: :GetY()
 
 * Вернуть значение координаты Z точки
 
-.. function:: :GetZ()    
+.. lua:method:: :GetZ()    
 
 Операторы
 ^^^^^^^^^^
 
-* Сложить точки
+* Сравнить на равенство с другой точкой
 
-.. function:: +
+.. function:: ==
 
-    :return: Трёхмерный вектор
-    :rtype: :ref:`Vector3D <vector3d>`  
-
-* Вычесть точки
-
-.. function:: -
-
-    :return: Трёхмерный вектор
-    :rtype: :ref:`Vector3D <vector3d>` 
+    :return: Логическое значение
+    :rtype: Boolean
 
 .. _vector3d:
 
@@ -147,7 +140,7 @@
 
 Конструктор класса:
 
-.. function:: Vector3D(x, y, z)
+.. lua:function:: Vector3D(x, y, z)
 
     :param x: Задает соотношение направления по оси X.
     :type x: Number
@@ -161,36 +154,43 @@
 
 * Вернуть соотношение направления по оси X
 
-.. function:: :GetX()
+.. lua:method:: :GetX()
 
 * Вернуть соотношение направления по оси Y
 
-.. function:: :GetY()
+.. lua:method:: :GetY()
 
 * Вернуть соотношение направления по оси Z
 
-.. function:: :GetZ()
+.. lua:method:: :GetZ()
+
+* Вернуть противоположный вектор
+
+.. lua:method:: :GetNegative()
+
+    :return: Вектор, обращенный в обратную сторону
+    :rtype: :ref:`Vector3D <vector3d>` 
 
 Операторы
 ^^^^^^^^^^
 
-* Унарный минус
+* Сравнить на равенство с другим вектором
 
-.. function:: -
+.. function:: ==
 
-    :return: Вектор, обращенный в обратную сторону
-    :rtype: :ref:`Vector3D <vector3d>`  
+    :return: Логическое значение
+    :rtype: Boolean  
 
-.. _axis:
+.. _axis3d:
 
-Ось (класс Axis)
+Ось (класс Axis3D)
 ------------------
 
 Ось — вектор, привязанный к фиксированной точке.
 
 Конструктор класса:
 
-.. function:: Axis(point, vector)
+.. lua:function:: Axis3D(point, vector)
 
     :param point: Задает точку начала оси.
     :type point: :ref:`Point3D <point3d>`
@@ -199,47 +199,79 @@
 
 Альтернативные конструкторы:
 
-.. function:: XAxis()
+.. lua:function:: CreateXAxis3D()
 
     :return: Ось X
-    :rtype: :ref:`Axis <axis>`
+    :rtype: :ref:`Axis3D <axis3d>`
 
-.. function:: YAxis()
+.. lua:function:: CreateYAxis3D()
 
     :return: Ось Y
-    :rtype: :ref:`Axis <axis>`
+    :rtype: :ref:`Axis3D <axis3d>`
 
-.. function:: ZAxis()
+.. lua:function:: CreateZAxis3D()
 
     :return: Ось Z
-    :rtype: :ref:`Axis <axis>`    
+    :rtype: :ref:`Axis3D <axis3d>`    
 
 Методы класса
 ^^^^^^^^^^^^^
 
-* Вернуть вектор оси
+* Сместить по осям X, Y, Z
 
-.. attention:: Проверить!
+.. lua:method:: :ShiftTransform(dX, dY, dZ)
 
-.. function:: :GetVector()
+    :param dX: Задает смещение по оси X.
+    :type dX: Number
+    :param dY: Задает смещение по оси Y.
+    :type dY: Number
+    :param dZ: Задает смещение по оси Z.
+    :type dZ: Number
+
+* Повернуть на угол
+
+.. lua:method:: :RotateTransform(axis, angle)
+
+    :param axis: Задает ось вращения.
+    :type axis: :ref:`Axis3D <axis3d>`
+    :param angle: Задает угол поворота.
+    :type angle: Number
+
+* Вернуть копию объекта
+
+.. lua:method:: :Clone()
+
+    :return: Копия оси
+    :rtype: :ref:`Axis3D <axis3d>`
+
+* Вернуть вектор направления оси
+
+.. lua:method:: :GetDirection()
 
     :rtype: :ref:`Vector3D <vector3d>`
 
 * Вернуть точку начала оси
 
-.. function:: :GetOrigin()
+.. lua:method:: :GetOrigin()
 
     :rtype: :ref:`Point3D <point3d>`
+
+* Вернуть противоположно направленную ось
+
+.. lua:method:: :GetNegative()
+
+    :return: Ось, обращенная в обратную сторону
+    :rtype: :ref:`Axis3D <axis3d>` 
 
 Операторы
 ^^^^^^^^^^
 
-* Унарный минус
+* Сравнить на равенство с другой осью
 
-.. function:: -
+.. function:: ==
 
-    :return: Ось, обращенная в обратную сторону
-    :rtype: :ref:`Axis <axis>`  
+    :return: Логическое значение
+    :rtype: Boolean  
 
 .. _placement3d:
 
@@ -248,13 +280,13 @@
 
 Конструктор класса:
 
-.. function:: Placement3D(origin, vectorZ, vectorX)
+.. lua:function:: Placement3D(origin, vectorZ, vectorX)
 
     :param origin: Задает точку начала координат.
     :type origin: :ref:`Point3D <point3d>`
-    :param vectorZ: Задает ориентацию оси Z.
+    :param vectorZ: Задает направление оси Z.
     :type vectorZ: :ref:`Vector3D <vector3d>`
-    :param vectorX: Задает ориентацию оси X.
+    :param vectorX: Задает направление оси X.
     :type vectorX: :ref:`Vector3D <vector3d>`
 
 Методы класса
@@ -262,7 +294,7 @@
 
 * Сместить ЛСК по осям X, Y, Z
 
-.. function:: :Shift(dX, dY, dZ)
+.. lua:method:: :ShiftTransform(dX, dY, dZ)
 
     :param dX: Задает смещение по оси X.
     :type dX: Number
@@ -273,66 +305,83 @@
 
 * Повернуть ЛСК относительно заданной оси
 
-.. function:: :Rotate(axis, angle)
+.. lua:method:: :RotateTransform(axis, angle)
 
     :param axis: Задает ось вращения.
-    :type axis: :ref:`Axis <axis>`
+    :type axis: :ref:`Axis3D <axis3d>`
     :param angle: Задает угол вращения.
     :type angle: Number
 
 * Трансформировать СК в новую ЛСК
 
-.. function:: :Transform(placement)
+.. lua:method:: :Transform(placement)
 
     :param placement: Задает новую ЛСК.
     :type placement: :ref:`Placement3D <placement3d>`
 
 * Вернуть копию объекта
 
-.. function:: :Clone()
+.. lua:method:: :Clone()
 
     :return: Копия ЛСК
     :rtype: :ref:`Placement3D <placement3d>`
 
 * Вернуть начало ЛСК
 
-.. function:: :GetOrigin()
+.. lua:method:: :GetOrigin()
 
     :return: Начало ЛСК
     :rtype: :ref:`Point3D <point3d>`
 
 * Вернуть ось X
 
-.. function:: :XAxis()
+.. lua:method:: :GetXAxis()
 
-    :rtype: :ref:`Axis <axis>`
+    :rtype: :ref:`Axis3D <axis3d>`
 
 * Вернуть ось Y
 
-.. function:: :YAxis()
+.. lua:method:: :GetYAxis()
 
-    :rtype: :ref:`Axis <axis>`
+    :rtype: :ref:`Axis3D <axis3d>`
 
 * Вернуть ось Z
 
-.. function:: :ZAxis()
+.. lua:method:: :GetZAxis()
 
-    :rtype: :ref:`Axis <axis>`
+    :rtype: :ref:`Axis3D <axis3d>`
 
-* Вернуть вектор оси X
+* Вернуть направление оси X
 
-.. function:: :VectorX()
-
-    :rtype: :ref:`Vector3D <vector3d>`
-
-* Вернуть вектор оси Y
-
-.. function:: :VectorY()
+.. lua:method:: :GetXAxisDirection()
 
     :rtype: :ref:`Vector3D <vector3d>`
 
-* Вернуть вектор оси Z
+* Вернуть направление оси Y
 
-.. function:: :VectorZ()
+.. lua:method:: :GetYAxisDirection()
 
     :rtype: :ref:`Vector3D <vector3d>`
+
+* Вернуть направление оси Z
+
+.. lua:method:: :GetZAxisDirection()
+
+    :rtype: :ref:`Vector3D <vector3d>`
+
+Операторы
+^^^^^^^^^
+
+* Сравнить на равенство с другой ЛСК
+
+.. function:: ==
+
+    :return: Логическое значение
+    :rtype: Boolean
+
+* Сравнить на неравенство с другой ЛСК
+
+.. function:: !=
+
+    :return: Логическое значение
+    :rtype: Boolean

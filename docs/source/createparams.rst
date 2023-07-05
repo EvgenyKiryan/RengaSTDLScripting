@@ -129,7 +129,7 @@ UserEnum
     {
         "name" : "body_shape",
         "text" : "Форма корпуса",
-        "type" : "userenum",
+        "type" : "user_enum",
         "default" : "volute",
         "items" : [
             {
@@ -167,7 +167,7 @@ CoreEnum
 * ``name`` — имя параметра
 * ``text`` — отображаемое имя параметра в диалоге стиля Renga
 * ``type`` — тип параметра
-* ``enum_type`` — :doc:`идентификатор системных перечислений <../coreenums>`
+* ``core_enum_type`` — :doc:`идентификатор системных перечислений <../coreenums>`
 * ``default`` — значение по-умолчанию
 
 .. code-block::
@@ -177,8 +177,8 @@ CoreEnum
     {
         "name" : "connector_type",
         "text" : "Вид соединения",
-        "type" : "coreenum",
-        "enum_type" : "AirConnectorType",
+        "type" : "core_enum",
+        "core_enum_type" : "AirConnectorType",
         "default" : "DriveSlip"
     }
 

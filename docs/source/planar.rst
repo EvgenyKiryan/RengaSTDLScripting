@@ -5,7 +5,7 @@
 Плоская геометрия является контейнером, вмещающим в себя графические примитивы (из которых будет состоять УГО) таких типов, как:
 
 * :ref:`Двумерные кривые <curve2d>`
-* :ref:`Двумерные регионы <region>`
+* :ref:`Двумерные регионы <fillarea>`
 
 .. code-block:: lua
     :caption: Пример 1. Создание плоской геометрии, состоящей из 2-х кривых и одного региона.
@@ -14,11 +14,11 @@
     local symbolGeometry = ModelGeometry()
     local planarGeometry = PlanarGeometryPlane()    
     planarGeometry:AddCurve(Rectangle(20, 10))
-    planarGeometry:AddCurve(Line(Point2d(10, -5),
-                                 Point2d(-10, 5)))
-    planarGeometry:AddHatchBasic(Region({ClosedContourByPoints({Point2d(10, -5),
-                                                                Point2d(-10, 5),
-                                                                Point2d(-10, -5)})}))
+    planarGeometry:AddCurve(LineSegment(Point2D(10, -5),
+                                        Point2D(-10, 5)))
+    planarGeometry:AddHatchBasic(FillArea({ContourByPoints({Point2D(10, -5),
+                                                            Point2D(-10, 5),
+                                                            Point2D(-10, -5)})}))
     symbolGeometry:AddPlanarGeometry(planarGeometry:SetUnscalable(true))
     Style.SetSymbolGeometry(symbolGeometry)
 
@@ -39,7 +39,7 @@
 
 .. note:: В основном используется в условном отображении оборудования
 
-.. function:: PlanarGeometryPlane()
+.. lua:function:: PlanarGeometryPlane()
 
 Пример поведения:
 
@@ -58,7 +58,7 @@
 
 .. note:: В основном используется в символьном и условном отображении аксессуаров трубопроводов и воздуховодов
 
-.. function:: PlanarGeometryAxis90()
+.. lua:function:: PlanarGeometryAxis90()
 
 Пример поведения:
 
@@ -77,7 +77,7 @@
 
 .. note:: Используется для создания символьного отображения оборудования электрических систем и вспомогательной геометрии в 3D
 
-.. function:: PlanarGeometryGlobalZ()
+.. lua:function:: PlanarGeometryGlobalZ()
 
 Пример поведения:
 
@@ -94,7 +94,7 @@
 
 * Сместить по осям X, Y
 
-.. function:: :Shift(dX, dY)
+.. lua:method:: :Shift(dX, dY)
 
     :param dX: Задает смещение по оси X.
     :type dX: Number
@@ -103,7 +103,7 @@
 
 * Повернуть относительно точки
 
-.. function:: :Rotate(point, angle)
+.. lua:method:: :Rotate(point, angle)
 
     :param point: Задает точку-центр вращения.
     :type point: :ref:`Point2D <point2d>`
@@ -112,7 +112,7 @@
 
 * Масштабировать по двум осям относительно указанной точки
 
-.. function:: :Scale(point, scaleX, scaleY)
+.. lua:method:: :Scale(point, scaleX, scaleY)
 
     :param point: Задает точку, относительно которой будет масштабироваться кривая.
     :type point: :ref:`Point2D <point2d>`
@@ -123,42 +123,42 @@
 
 * Добавить кривую к плоской геометрии
 
-.. function:: :AddCurve(curve)
+.. lua:method:: :AddCurve(curve)
 
     :param curve: Задает двухмерную кривую.
     :type curve: :ref:`Curve2D <curve2d>`
 
 * Добавить регион к основной штриховке
 
-.. function:: :AddHatchBasic(region)
+.. lua:method:: :AddHatchBasic(region)
 
     :param region: Задает двухмерный регион.
-    :type region: :ref:`Region <region>`
+    :type region: :ref:`FillArea <fillarea>`
 
 * Добавить регион к дополнительной штриховке
 
-.. function:: :AddHatchExtra(region)
+.. lua:method:: :AddHatchExtra(region)
 
     :param region: Задает двухмерный регион.
-    :type region: :ref:`Region <region>`
+    :type region: :ref:`FillArea <fillarea>`
 
 * Задать ЛСК для построения плоской геометрии
 
-.. function:: :SetPlacement(placement)
+.. lua:method:: :SetPlacement(placement)
 
     :param placement: Задает трёхмерную локальную систему координат.
     :type placement: :ref:`Placement3D <placement3d>`
 
 * Задать возможность масштабирования геометрии
 
-.. function:: :SetUnscalable(bool)
+.. lua:method:: :SetUnscalable(bool)
 
     :param bool: True - геометрия не масштабируется. False - масштабируется.
     :type bool: Boolean
 
 * Задать приоритет геометрии по оси Z
 
-.. function:: :SetZIndexPriority(bool)
+.. lua:method:: :SetZIndex(bool)
 
     :param bool: True - приоритет задан. False - не задан.
     :type bool: Boolean

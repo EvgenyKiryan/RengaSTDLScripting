@@ -71,7 +71,7 @@
     local detailedGeometry = ModelGeometry()
     local solid = Block(size, size, size)
     local auxGeometry = PlanarGeometryGlobalZ()
-    local region = Region({contours})
+    local region = FillArea({contours})
 
     auxGeometry:AddHatchBasic(region)
     detailedGeometry:AddSolid(solid)

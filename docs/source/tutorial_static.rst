@@ -138,14 +138,14 @@ parameters.json
             {
                 "name" : "connector_type",
                 "text" : "Вид соединения",
-                "type" : "coreenum",
+                "type" : "core_enum",
                 "enum_type" : "ConnectorType",
                 "default" : "Thread"
             },
             {
                 "name" : "thread_size",
                 "text" : "Номинальный диаметр",
-                "type" : "coreenum",
+                "type" : "core_enum",
                 "enum_type" : "PipeThreadSize",
                 "default" : "D0_50"
             },
@@ -194,7 +194,7 @@ parameters.json
             {
                 "name" : "connection_side",
                 "text" : "Сторона подключения",
-                "type" : "userenum",
+                "type" : "user_enum",
                 "default" : "right",
                 "items" : [
                     {
@@ -210,7 +210,7 @@ parameters.json
             {
                 "name" : "connection_direction",
                 "text" : "Направление подключения",
-                "type" : "userenum",
+                "type" : "user_enum",
                 "default" : "side",
                 "items" : [
                     {
@@ -259,7 +259,7 @@ parameters.json
             {
                 "name" : "port_location",
                 "text" : "Расположение точек подключения",
-                "type" : "userenum",
+                "type" : "user_enum",
                 "default" : "right",
                 "items" : [
                     {

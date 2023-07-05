@@ -62,8 +62,8 @@ Lua-интерфейс Renga
 
 Таблицы ``Parameters`` и ``Ports`` также являются объектами таблицы ``Style``.
 
-Создание детального отображения объекта стиля
-"""""""""""""""""""""""""""""""""""""""""""""
+Добавить детальную модельную геометрию объекта в стиль
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. lua:function:: SetDetailedGeometry(detailedGeometry)
 
@@ -71,13 +71,13 @@ Lua-интерфейс Renga
     :type detailedGeometry: ModelGeometry
 
 .. code-block:: lua
-    :caption: Пример 4. Создание детального отображения стиля:
+    :caption: Пример 4. Добавление детальной модельной геометрии в стиль:
     :linenos:
 
     Style.SetDetailedGeometry(detailedGeometry)
 
-Создание условного отображения объекта стиля
-""""""""""""""""""""""""""""""""""""""""""""
+Добавить условную модельную геометрию объекта в стиль
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. lua:function:: SetSymbolicGeometry(symbolicGeometry)
 
@@ -85,13 +85,13 @@ Lua-интерфейс Renga
     :type detailedGeometry: ModelGeometry
 
 .. code-block:: lua
-    :caption: Пример 5. Создание условного отображения стиля:
+    :caption: Пример 5. Добавление условной модельной геометрии в стиль:
     :linenos:
 
     Style.SetSymbolicGeometry(symbolicGeometry)
 
-Создание символьного отображения объекта стиля
-""""""""""""""""""""""""""""""""""""""""""""""
+Добавить символьную модельную геометрию объекта в стиль
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. lua:function:: SetSymbolGeometry(symbolGeometry)
 
@@ -99,13 +99,13 @@ Lua-интерфейс Renga
     :type detailedGeometry: ModelGeometry
 
 .. code-block:: lua
-    :caption: Пример 5. Создание символьного отображения стиля:
+    :caption: Пример 5. Добавление символьной модельной геометрии в стиль:
     :linenos:
 
     Style.SetSymbolGeometry(symbolGeometry)
 
-Задание видимости параметра в диалоге стиля объекта
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+Установить видимость параметра в диалоге стиля объекта
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. lua:function:: SetParamVisible(groupName, parameterName, bool)
 
@@ -116,7 +116,7 @@ Lua-интерфейс Renga
     :param bool: Задает видимость параметра. True - видимый, False - невидимый
     :type bool: Boolean
 
-.. note:: Имена параметров берутся из JSON
+.. note:: Имена групп параметров и параметров берутся из JSON
 
 .. code-block:: lua
     :caption: Пример 6. Создание видимости параметра ``body_width`` группы параметров ``Dimensions`` во вкладке "Параметры" окна стиля объекта:
@@ -124,8 +124,8 @@ Lua-интерфейс Renga
 
     Style.SetParamVisible("Dimensions", "body_width", true)
 
-Задание видимости группы параметров в диалоге стиля объекта
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Установить видимость группы параметров в диалоге стиля объекта
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. lua:function:: SetGroupVisible(groupName, bool)
 
@@ -141,3 +141,29 @@ Lua-интерфейс Renga
     :linenos:
 
     Style.SetGroupVisible("ElectricActuatorDimensions", true)
+
+Установить режим редактирования параметра в диалоге стиля объекта
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. lua:function:: SetParameterEnabled(groupName, parameterName, bool)
+
+    :param groupName: Задает идентификатор (имя) :doc:`группы параметров <../createparams>`.
+    :type groupName: String
+    :param parameterName: Задает идентификатор (имя) :doc:`параметра <../createparams>`.
+    :type parameterName: String
+    :param bool: Задает редактируемость параметра. True - видимый, False - невидимый
+    :type bool: Boolean
+
+.. note:: Имена групп параметров и параметров берутся из JSON
+
+Установить режим редактирования параметров в группе в диалоге стиля объекта
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. lua:function:: SetGroupEnabled(groupName, bool)
+
+    :param groupName: Задает идентификатор (имя) :doc:`группы параметров <../createparams>`.
+    :type groupName: String
+    :param bool: Задает редактируемость параметров в группе. True - видимый, False - невидимый
+    :type bool: Boolean
+
+.. note:: Имена групп параметровберутся из JSON

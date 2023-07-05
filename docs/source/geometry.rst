@@ -10,8 +10,8 @@
 ^^^^^^^^^^^^^^
 
 Четырехугольная призма, все грани которой являются прямоугольниками (прямоугольный параллелепипед).
-
-.. function:: Block(length, width, height)
+    
+.. lua:function:: Block(length, width, height)
 
     :param length: Задает длину параллелепипеда.
     :type length: Number
@@ -57,7 +57,7 @@
 Сфера
 ^^^^^
 
-.. function:: Sphere(radius)
+.. lua:function:: Sphere(radius)
 
     :param radius: Задает радиус сферы.
     :type radius: Number
@@ -85,7 +85,7 @@
 
 Тело, ограниченное цилиндрической поверхностью и двумя параллельными плоскостями, пересекающими её.
 
-.. function:: Cylinder(radius, height)
+.. lua:function:: RightCircularCylinder(radius, height)
 
     :param radius: Задает радиус цилиндра.
     :type radius: Number
@@ -99,7 +99,7 @@
     :linenos:
 
     local detailedGeometry = ModelGeometry()
-    local pinSolid = Cylinder(10, 40)
+    local pinSolid = RightCircularCylinder(10, 40)
     detailedGeometry:AddSolid(pinSolid:HideSmoothEdges())
     Style.SetDetailedGeometry(detailedGeometry)
 
@@ -115,7 +115,7 @@
 
 Прямой конус, основанием которого является окружность и ортогональная проекция вершины конуса на плоскость основания совпадает с этим центром.
 
-.. function:: Cone(radius, height)
+.. lua:function:: RightCircularCone(radius, height)
 
     :param radius: Задает радиус конуса.
     :type radius: Number
@@ -129,7 +129,7 @@
     :linenos:
 
     local detailedGeometry = ModelGeometry()
-    local coneSolid = Cone(10, 40)
+    local coneSolid = RightCircularCone(10, 40)
     detailedGeometry:AddSolid(coneSolid:HideSmoothEdges())
     Style.SetDetailedGeometry(detailedGeometry)
 
@@ -145,7 +145,7 @@
 
 Часть конуса, лежащая между основанием и плоскостью, параллельной основанию и находящейся между вершиной и основанием.
 
-.. function:: ConicalFrustum(bottomRadius, topRadius, height)
+.. lua:function:: ConicalFrustum(bottomRadius, topRadius, height)
 
     :param bottomRadius: Задает радиус основания усеченного конуса.
     :type bottomRadius: Number
@@ -177,7 +177,7 @@
 
 Основанием пирамиды является прямоугольник.
 
-.. function:: Pyramid(sizeX, sizeY, height)
+.. lua:function:: Pyramid(sizeX, sizeY, height)
 
     :param sizeX: Задает размер основания пирамиды по оси X.
     :type sizeX: Number
@@ -206,41 +206,64 @@
 
 .. _extrusion:
 
+Усеченная пирамида с прямоугольным основанием
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Центр нижнего основания совпадает с началом координат, центр верхнего основания лежит на оси Z, ребра оснований параллельны координатным осям.
+
+.. lua:function:: PyramidalFrustum(bottomSizeX, bottomSizeY, topSizeX, topSizeY, height)
+
+    :param bottomSizeX: Задает размер нижнего основания пирамиды по оси X.
+    :type bottomSizeX: Number
+    :param bottomSizeY: Задает размер нижнего основания пирамиды по оси Y.
+    :type bottomSizeY: Number
+    :param topSizeX: Задает размер верхнего основания пирамиды по оси X.
+    :type topSizeX: Number
+    :param topSizeY: Задает размер верхнего основания пирамиды по оси Y.
+    :type topSizeY: Number      
+    :param height: Задает высоту пирамиды.
+    :type height: Number
+    :return: Твердотельная геометрия.
+    :rtype: Solid
+
 Тело выдавливания
 ^^^^^^^^^^^^^^^^^
 
-.. function:: ExtrudedSolid(contour, direction, params)
+.. lua:function:: ExtrudedSolid(contour, direction, extrusionValues)
 
     :param contour: Задает плоский контур выдавливания.
     :type contour: :ref:`Curve2D <curve2d>`   
     :param direction: Задает направление выдавливания.
     :type direction: :ref:`Vector3D <vector3d>`
-    :param params: Задает дополнительные параметры построения.
-    :type params: :ref:`ExtrusionValues <extrusionval>`
+    :param extrusionValues: Задает дополнительные параметры построения.
+    :type extrusionValues: :ref:`ExtrusionValues <extrusionval>`
     :return: Твердотельная геометрия.
     :rtype: Solid
 
     .. _extrusionval:
 
-    Дополнительные параметры построения
-    """""""""""""""""""""""""""""""""""
-
-    Конструктор:
-
-    .. function:: ExtrusionValues(forwardDepth, backwardDepth)
+    Дополнительные параметры построения для функции ExtrudedSolid
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    
+    .. lua:function:: ExtrusionValues(forwardDepth, backwardDepth)
 
         :param forwardDepth: Задает глубину выдавливания в прямом направлении.
         :type forwardDepth: Number
         :param backwardDepth: Задает глубину выдавливания в обратном направлении.
         :type backwardDepth: Number
 
-        :Поля:            
-            * **thickness1** (*Number*) — Задает отступ наружу от образующей кривой (по умолчанию 0)
-            * **thickness2** (*Number*) — Задает отступ внутрь от образующей кривой (по умолчанию 0)
-            * **forwardAngle** (*Number*) — Задает угол наклона при выдавливании в прямом направлении (по умолчанию 0)
-            * **backwardAngle** (*Number*) — Задает угол наклона при выдавливании в обратном направлении (по умолчанию 0)
-        
+        :MEMBERS:
 
+            * **OutwardOffset** (``Number``) - Задает отступ наружу от образующей кривой (по умолчанию 0)
+            * **InwardOffset** (``Number``) - Задает отступ внутрь от образующей кривой (по умолчанию 0)
+
+            .. note:: Используются для построения тонкостенного тела. При ``OutwardOffset`` = 0 и ``InwardOffset`` = 0 строится сплошное тело по контуру.
+
+            * **ForwardDirectionDraftAngle** (``Number``) - Задает угол наклона при выдавливании в прямом направлении (по умолчанию 0)
+            * **ReverseDirectionDraftAngle** (``Number``) - Задает угол наклона при выдавливании в обратном направлении (по умолчанию 0)
+
+            .. note:: При положительном значении происходит сужение. При отрицательном - расширение. Используются только при выдавливании по направлению вдоль оси Z.
+        
 .. code-block:: lua
     :caption: Пример 8. Построение полнотелого тела, путем задания контура и направления выдавливания - вертикально вверх.
     :linenos:
@@ -259,7 +282,7 @@
         Point2D(4, 2),
         Point2D(2, 2),
         Point2D(2, 0)}
-    local extrusionContour = ClosedContourByPoints(points)
+    local extrusionContour = ContourByPoints(points)
     local params = ExtrusionValues(40, 0)   -- глубина выдавливания в прямом направлении = 40
     local moldingSolid = ExtrudedSolid(extrusionContour,
                                        Vector3D(0, 0, 1),
@@ -293,9 +316,9 @@
         Point2D(4, 2),
         Point2D(2, 2),
         Point2D(2, 0)}
-    local profileContour = ClosedContourByPoints(points)
+    local profileContour = ContourByPoints(points)
     local params = ExtrusionValues(15, 0)   -- глубина выдавливания в прямом направлении = 15
-    params.thickness1 = params.thickness2 = 0.5 -- толщина отступа наружу и внутрь относительно заданного контура = 0.5
+    params.OutwardOffset = params.InwardOffset = 0.5 -- толщина отступа наружу и внутрь относительно заданного контура = 0.5
     local thinSolid = ExtrudedSolid(profileContour,
                                     Vector3D(0, 0, 1),
                                     params)
@@ -312,7 +335,7 @@
 Построение тела по плоским сечениям
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. function:: LoftedSolid({profiles}, {placements})
+.. lua:function:: LoftedSolid({profiles}, {placements})
 
     :param {profiles}: Задает таблицу плоских контуров.
     :type {profiles}: table of :ref:`Curves2D <curve2d>`   
@@ -347,10 +370,10 @@
     :width: 400 px
     :align: center
 
-Построение кинематического тела путем движения образующей кривой вдоль направляющей кривой
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Построение тела по плоским сечениям вдоль направляющей кривой
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. function:: LoftedSolidByProfilesAndPath(startProfile, endProfile, path)
+.. lua:function:: LoftedSolidByProfilesAndPath(startProfile, endProfile, path)
 
     :param startProfile: Задает плоский контур в начале.
     :type startProfile: :ref:`Curve2D <curve2d>`   
@@ -372,7 +395,7 @@
                               Point2D(-30, 0),
                               Point2D(0, 30),
                               true)
-    local arc3D = Curve3dByCurveAndPlacement(arc2D,
+    local arc3D = Curve3DByCurveAndPlacement(arc2D,
                                              Placement3D(Point3d(0, 0, 0),
                                                          Vector3d(0, -1, 0),
                                                          Vector3d(0, 0, 1)))
@@ -392,20 +415,20 @@
 
 Вращение плоского замкнутого контура вокруг заданной оси на указанный угол.
 
-.. function:: Revolution(placement, contour, origin, vector, counterClockwiseAngle, clockwiseAngle)
+.. lua:function:: RevolvedSolid(placement, contour, axis, counterClockwiseAngle, clockwiseAngle)
 
     :param placement: Задает координатную плоскость.
     :type placement: :ref:`Placement3D <placement3d>`
     :param contour: Задает плоский контур.
     :type contour: :ref:`Curve2D <curve2d>`
-    :param origin: Задает точку начала вектора вращения.
-    :type origin: :ref:`Point3D <point3d>`
-    :param vector: Задает вектор оси вращения.
-    :type vector: :ref:`Vector3D <vector3d>`
+    :param axis: Задает ось вращения.
+    :type axis: :ref:`Axis3D <axis3d>`
     :param counterClockwiseAngle: Задает угол вращения против часовой стрелки.
     :type counterClockwiseAngle: Number
     :param clockwiseAngle: Задает угол вращения по часовой стрелке.
     :type clockwiseAngle: Number
+    :return: Твердотельная геометрия.
+    :rtype: Solid
 
 .. code-block:: lua
     :caption: Пример 12.
@@ -415,13 +438,12 @@
     local placement = Placement3D(Point3D(0, 0, 0),
                                   Vector3D(1, 0, 0),
                                   Vector3D(0, 1, 0))
-    local contour = Rectangle(6, 15):FilletNth(3, 3):FilletNth(5, 3)
-    local revolutionSolid = Revolution(placement,
-                                       contour,
-                                       Point3D(0, 10, 0),
-                                       Vector3D(0, -0.5, 1),
-                                       0,
-                                       270)
+    local contour = Rectangle(6, 15):FilletCornerAfterSegment(3, 3):FilletCornerAfterSegmenth(5, 3)
+    local revolutionSolid = RevolvedSolid(placement,
+                                          contour,
+                                          Axis3D(Point3D(0, 10, 0), Vector3D(0, -0.5, 1)),
+                                          0,
+                                          270)
     detailedGeometry:AddSolid(loftedSolid:HideSmoothEdges())
     Style.SetDetailedGeometry(detailedGeometry)
 
@@ -432,6 +454,20 @@
     :width: 400 px
     :align: center
 
+Тело заметания
+^^^^^^^^^^^^^^
+
+Построение кинематического тела путем движения образующей кривой вдоль направляющей кривой.
+
+.. lua:function:: EvolvedSolid(profile, path)
+
+    :param profile: Задает образующую кривую.
+    :type profile: :ref:`Curve2D <curve2d>`
+    :param path: Задает направляющую кривую.
+    :type path: :ref:`Curve3D <curve3d>`
+    :return: Твердотельная геометрия.
+    :rtype: Solid
+
 Методы класса
 -------------
 
@@ -439,7 +475,7 @@
 
 * Сместить по осям X, Y, Z
 
-.. function:: :Shift(dX, dY, dZ)
+.. lua:method:: :ShiftTransform(dX, dY, dZ)
 
     :param dX: Задает смещение по оси X.
     :type dX: Number
@@ -450,23 +486,23 @@
 
 * Повернуть относительно оси
 
-.. function:: :Rotate(axis, angle)
+.. lua:method:: :RotateTransform(axis, angle)
 
     :param axis: Задает ось вращения.
-    :type axis: :ref:`Axis <axis>`
+    :type axis: :ref:`Axis3D <axis3d>`
     :param angle: Задает угол поворота.
     :type angle: Number
 
 * Разместить в относительной системе координат
 
-.. function:: :SetPlacement(placement)
+.. lua:method:: :SetPlacement(placement)
 
     :param placement: Задает координатную систему в 3D пространстве.
     :type placement: :ref:`Placement3D <placement3d>`
 
 * Скрытие ребер
 
-.. function:: :HideSmoothEdges()
+.. lua:method:: :HideSmoothEdges()
 
 Операторы
 ---------
@@ -482,9 +518,9 @@
     :linenos:
 
     local detailedGeometry = ModelGeometry()
-    local cube = Cube(20)
+    local cube = Block(20, 20, 20)
     local sphere = Sphere(10)
-    detailedGeometry:AddSolid(cube + sphere:Shift(10, 0, 10):HideSmoothEdges())
+    detailedGeometry:AddSolid(cube + sphere:ShiftTransform(10, 0, 10):HideSmoothEdges())
     Style.SetDetailedGeometry(detailedGeometry)   
 
 Результат:
@@ -505,9 +541,9 @@
     :linenos:
 
     local detailedGeometry = ModelGeometry()
-    local cube = Cube(20)
+    local cube = Block(20, 20, 20)
     local sphere = Sphere(10)
-    detailedGeometry:AddSolid(cube - sphere:Shift(10, 0, 10):HideSmoothEdges())
+    detailedGeometry:AddSolid(cube - sphere:ShiftTransform(10, 0, 10):HideSmoothEdges())
     Style.SetDetailedGeometry(detailedGeometry)
 
 Результат:
