@@ -1,0 +1,20 @@
+
+.site-sidebar {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    overflow-y: auto;
+    margin: 0;
+    padding: 30px;
+}
+
+.sidebar-logo {
+    display: block;
+    margin: 0 auto;
+    max-width: fill-available;
+}
+
+.sidebar-brand-text {
+    font-size: 1.4rem
+}
