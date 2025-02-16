@@ -1,0 +1,104 @@
+{
+    "metadata" : {
+        "defaultName" : "Арматурный каркас плоский - 2С",
+        "description" : "2 стержня по ширине, с выпусками вверх. Используются для армирования стен и пилонов",
+        "version" : "1.0.0",
+        "author" : "Кирьян Евгений"
+    },
+    "styleParameters" : [
+        {
+            "name" : "General",
+            "text" : "Общие",
+            "params" : [
+                {
+                    "name" : "meshLength",
+                    "text" : "Длина",
+                    "type" : "Length",
+                    "default" : 2800,
+                    "min" : 100,
+                    "max" : 10000
+                },
+                {
+                    "name" : "meshWidth",
+                    "text" : "Ширина",
+                    "type" : "Length",
+                    "default" : 160,
+                    "min" : 100,
+                    "max" : 10000
+                },
+                {
+                    "name" : "meshOffsetZ",
+                    "text" : "Смещение по вертикали",
+                    "type" : "Length",
+                    "default" : 0,
+                    "min" : -1000,
+                    "max" : 1000
+                }
+            ]
+        },
+        {
+            "name" : "LengthwaysRebars",
+            "text" : "Продольные арматурные стержни",
+            "params" : [
+                {
+                    "name" : "RebarStyleId",
+                    "text" : "Стиль арматурного стержня",
+                    "type" : "Id",
+                    "entityTypeId" : "608edb78-96f3-40a6-a0ec-71000105581b"
+                },
+                {
+                    "name" : "bottomFreeEndLength",
+                    "text" : "Свободный конец снизу",
+                    "type" : "Length",
+                    "default" : 50,
+                    "min" : 0,
+                    "max" : 10000
+                },
+                {
+                    "name" : "topFreeEndLength",
+                    "text" : "Свободный конец сверху",
+                    "type" : "Length",
+                    "default" : 50,
+                    "min" : 0,
+                    "max" : 10000
+                },
+                {
+                    "name" : "dowelLength",
+                    "text" : "Длина выпусков",
+                    "type" : "Length",
+                    "default" : 0,
+                    "min" : 0,
+                    "max" : 10000
+                }
+            ]
+        },
+        {
+            "name" : "TransverseRebars",
+            "text" : "Поперечные арматурные стержни",
+            "params" : [
+                {
+                    "name" : "RebarStyleId",
+                    "text" : "Стиль арматурного стержня",
+                    "type" : "Id",
+                    "entityTypeId" : "608edb78-96f3-40a6-a0ec-71000105581b"
+                },
+                {
+                    "name" : "rebarStep",
+                    "text" : "Шаг стержней",
+                    "type" : "Length",
+                    "default" : 200,
+                    "min" : 50,
+                    "max" : 10000
+                },
+                {
+                    "name" : "freeEndLength",
+                    "text" : "Свободный конец арматуры",
+                    "type" : "Length",
+                    "default" : 25,
+                    "min" : 0,
+                    "max" : 1000
+                }
+            ]
+        }
+    ]
+}
