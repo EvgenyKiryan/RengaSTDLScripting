@@ -188,10 +188,10 @@ Lua-интерфейс Renga
         :rtype: :ref:`Entity <entity>`
 
     .. code-block:: lua
-        :caption: Пример 5. Получение стиля арматурного стержня:
+        :caption: Пример 5. Получение стиля арматурного стержня из параметра ``RebarStyleId`` группы ``Reinforcement``:
         :linenos:
 
         local parameters = Style.GetParameterValues()
-        local RebarStyleId = parameters.Reinforcement.RebarStyleId
+        local rebarStyleId = parameters.Reinforcement.RebarStyleId
         
         local style = Project.GetRebarStyle(rebarStyleId)
