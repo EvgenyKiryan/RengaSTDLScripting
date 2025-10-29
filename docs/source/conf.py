@@ -9,7 +9,7 @@
 project = 'Renga Style Template Scripting'
 copyright = '2025, Renga Software'
 author = 'Eugene Kiryan'
-release = '2.0'
+release = '3.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
