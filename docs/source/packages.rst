@@ -52,13 +52,14 @@ Lua-интерфейс Renga
 * создают различный уровень детализации стиля (детальный, условный или символьный) из :doc:`модельной геометрии <../modelgeometry>`,
 * управляют доступом к :ref:`параметрам <parameter>` и :ref:`портам <access_to_ports>`,
 * .. versionadded:: 2.0 добавляют в стиль :ref:`арматурные стержни <rebar>` и :ref:`наборы арматурных стержней <rebarset>`,
+* .. versionadded:: 3.0 задают для стиля :ref:`остов изоляции <insulationskeleton>`.
 
 Таблицы ``Parameters`` и ``Ports`` также являются объектами пространства имён ``Style``.
 
 .. note:: Подробнее про уровни детализации стиля см. :doc:`модельную геометрию <../modelgeometry>`
 
 Создать детальную геометрию стиля
-"""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. lua:function:: SetDetailedGeometry(detailedGeometry)
 
@@ -75,7 +76,7 @@ Lua-интерфейс Renga
     Style.SetDetailedGeometry(detailedGeometry) -- создание детальной геометрии стиля
 
 Создать условную геометрию стиля
-""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. lua:function:: SetSymbolicGeometry(symbolicGeometry)
 
@@ -92,7 +93,7 @@ Lua-интерфейс Renga
     Style.SetSymbolicGeometry(symbolicGeometry) -- создание условной геометрии стиля
 
 Создать символьную геометрию стиля
-""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. lua:function:: SetSymbolGeometry(symbolGeometry)
 
@@ -111,7 +112,7 @@ Lua-интерфейс Renga
 .. _rebar:
 
 Добавить арматурный стержень в стиль
-""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. versionadded:: 2.0
 
@@ -135,7 +136,7 @@ Lua-интерфейс Renga
 .. _rebarset:
 
 Добавить набор арматурных стержней в стиль
-""""""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. versionadded:: 2.0
 
@@ -162,6 +163,24 @@ Lua-интерфейс Renga
 
         Style.AddRebarSet(RebarStyleId, rebarCurve, Vector3D(0, 1, 0), 200, 10)
 
+.. _insulationskeleton:
+
+Задать остов изоляции для стиля
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. versionadded:: 3.0
+
+    .. lua:function:: SetInsulationSkeleton({parts})
+
+        :param {parts}: Задает таблицу участков изоляции.
+        :type {parts}: table of :ref:`Parts <insulationparts>`
+           
+    .. code-block:: lua
+        :caption: Пример 6. Задание для стиля остова изоляции, состоящего из 3-х частей:
+        :linenos:
+
+        Style.SetInsulationSkeleton({{part1}, {part2}, {part3}})
+
 .. _project:
 
 Функции для получения объектов и стилей проекта
@@ -176,7 +195,7 @@ Lua-интерфейс Renga
 .. _rebar_style:
 
 Получить стиль арматурного стержня
-""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. versionadded:: 2.0
 
@@ -188,7 +207,7 @@ Lua-интерфейс Renga
         :rtype: :ref:`Entity <entity>`
 
     .. code-block:: lua
-        :caption: Пример 5. Получение стиля арматурного стержня из параметра ``RebarStyleId`` группы ``Reinforcement``:
+        :caption: Пример 7. Получение стиля арматурного стержня из параметра ``RebarStyleId`` группы ``Reinforcement``:
         :linenos:
 
         local parameters = Style.GetParameterValues()
