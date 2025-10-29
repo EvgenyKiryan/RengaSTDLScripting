@@ -46,8 +46,6 @@ Renga Style Template Scripting
 
    ports
 
-   insulation
-
    reinforcement
 
    auxiliary
