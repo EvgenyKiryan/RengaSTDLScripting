@@ -152,7 +152,7 @@ Cозданную двумерную геометрию ``geometry`` добав�
 
 8. Объявим несколько локальных переменных, которые помогут создать декартовы точки портов.
 
-.. note:: Порты размещаются по умолчанию в центре ЛСК
+.. note:: Порты размещаются по-умолчанию в центре ЛСК
 
 .. code-block:: lua
     :caption: Объявление локальных переменных.
@@ -165,7 +165,7 @@ Cозданную двумерную геометрию ``geometry`` добав�
     local gasPortIntendation = parameters.GasCoolant.portIndentation
     local drainagePortIntendation = parameters.Drainage.portIndentation
 
-    -- декартовы точки по умолчанию
+    -- декартовы точки по-умолчанию
     local waterCoolantOrigin = Point3D(0, 0, 0)
     local gasCoolantOrigin = Point3D(0, 0, 0)
     local drainageOrigin = Point3D(0, 0, 0)
@@ -218,7 +218,7 @@ Cозданную двумерную геометрию ``geometry`` добав�
         local direction = parameters[name].connectionDirection
         local side = parameters[name].connectionSide
 
-        -- векторы по умолчанию
+        -- векторы по-умолчанию
         local vectorZ = Vector3D(0, 0, 1)
         local vectorX = Vector3D(1, 0, 0)
 
@@ -291,7 +291,7 @@ Cозданную двумерную геометрию ``geometry`` добав�
     local electricPortIntendation = parameters.ElectricConnectors.portIndentation
     local distanceBetweenElectricPorts = parameters.ElectricConnectors.distanceBetweenPorts
 
-    --декартова точка портов по умолчанию
+    --декартова точка портов по-умолчанию
     local electricConnectorsOrigin = Point3D(-distanceBetweenElectricPorts,
                                             halfWidth - electricPortIntendation,
                                             halfHeight)

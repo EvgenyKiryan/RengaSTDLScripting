@@ -329,8 +329,7 @@
     -- глубина выдавливания в прямом направлении = 15, в обратном направлении - по умолчанию = 0:
     local params = ExtrusionParameters(15)
     -- толщина отступа наружу и внутрь относительно заданного контура = 0.5:
-    params.OutwardOffset = 0.5
-    params.InwardOffset = 0.5
+    params.OutwardOffset = params.InwardOffset = 0.5
     local thinSolid = Extrude(profileContour,
                               params)
     detailedGeometry:AddSolid(thinSolid)
